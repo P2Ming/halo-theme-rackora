@@ -34,7 +34,7 @@ pnpm test:budget
 7. 执行 `pnpm build` 生成本地 `dist/theme-rackora-X.Y.Z.zip`，检查包内版本、配置、模板和本次改动，并记录大小与 SHA-256。
 8. 审阅完整 diff 与 `git diff --check`，提交后创建带说明的 `vX.Y.Z` 标签。
 9. 依次推送 `main` 和标签；等待 `Release theme` 工作流成功，不以“已触发”代替完成。
-10. 确认 GitHub Release 正文来自 `CHANGELOG.md`，且远程包含同名 ZIP。
+10. 确认 GitHub Release 正文来自 `CHANGELOG.md`，且远程包含同名 ZIP；已配置 `HALO_APP_ID` 变量与 `HALO_PAT` 密钥时，同时确认 `Sync release to Halo App Store` 步骤成功。
 11. 比较本地与远程 ZIP 的 SHA-256；不一致时不得宣布发布完成。
 12. 最后确认工作区干净，`main`、`origin/main` 和标签指向同一发布提交。
 

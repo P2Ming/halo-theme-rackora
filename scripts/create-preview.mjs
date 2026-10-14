@@ -21,6 +21,8 @@ if (![cssName, mainName, postName].every((name) => assetNames.includes(name))) {
 await rm(output, { recursive: true, force: true });
 await mkdir(path.join(output, "assets"), { recursive: true });
 await cp(builtAssets, path.join(output, "assets"), { recursive: true });
+// 构建后的 CSS 按 Halo 的主题资源路径引用字体，预览里同样提供这条路径，避免字体 404 回退。
+await cp(builtAssets, path.join(output, "themes", "theme-rackora", "assets"), { recursive: true });
 
 const posts = [
   {
@@ -87,7 +89,7 @@ function header(logoMode = "square") {
       </a>
       <button class="icon-button nav-toggle" type="button" aria-label="Open navigation" aria-controls="primary-nav" aria-expanded="false" data-nav-toggle><i data-lucide="menu"></i></button>
       <nav id="primary-nav" class="site-nav" aria-label="Primary navigation" data-site-nav>
-        <ul><li><a href="/">Home</a></li><li><a href="#">Infrastructure</a></li><li><a href="#">Reviews</a></li><li><a href="#">Guides</a></li><li><a href="#">Notes</a></li><li><a href="#">About</a></li></ul>
+        <ul><li><a href="/">Home</a></li><li><a href="#">Infrastructure</a></li><li><a href="#">Reviews</a></li><li class="has-children"><a href="#">Guides</a><ul class="submenu"><li><a href="/archives.html">Deployment</a></li><li><a href="/links.html">Operations</a></li></ul></li><li><a href="#">Notes</a></li><li><a href="/about.html">About</a></li></ul>
       </nav>
       <div class="header-actions"><button class="icon-button" type="button" title="Search" aria-label="Search"><i data-lucide="search"></i></button><button class="icon-button" type="button" title="Toggle color scheme" aria-label="Toggle color scheme" data-theme-toggle><i data-lucide="moon"></i></button></div>
     </div>
@@ -194,6 +196,7 @@ const article = `
         <h2>Closing notes</h2>
         <p>A calm reading interface keeps navigation available without competing with the article itself.</p>
       </div>
+      <section class="ad-slot" aria-label="Sponsored content"><p class="ad-disclosure">The site may earn a commission from promotional links without affecting editorial judgment or your price.</p><ul class="ad-list"><li class="ad-card"><a href="#" rel="sponsored nofollow noopener noreferrer"><span class="ad-card__body"><small>Sponsored</small><strong>Text-only partner offer</strong><span>Ads without an image keep the arrow on the right edge.</span></span><i data-lucide="external-link" aria-hidden="true"></i></a></li></ul></section>
       <footer class="article-footer">
         <div class="article-footer__meta">
           <div class="article-tags" aria-label="Post tags"><a href="#">Halo</a><a href="#">Design</a><a href="#">Publishing</a></div>
@@ -211,7 +214,7 @@ const article = `
           </nav>
         </div>
         <aside class="article-license" aria-label="Author and copyright notice"><div class="article-license__lead"><strong>Designing a calmer technical publication</strong><a href="/post.html">http://127.0.0.1:4173/post.html</a></div><dl><div><dt>Author</dt><dd>Everett Labs</dd></div><div><dt>Published</dt><dd>2026-08-14</dd></div><div><dt>License</dt><dd><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></dd></div></dl><span class="article-license__mark" aria-hidden="true">©</span></aside>
-        <nav class="post-navigation" aria-label="Adjacent posts"><a href="#"><span>Previous</span><strong>Building a reliable content workflow</strong></a><a href="#"><span>Next</span><strong>Verification notes for independent sites</strong></a></nav>
+        <nav class="post-navigation" aria-label="Adjacent posts"><a href="#"><span>Previous</span><strong>Building a reliable content workflow</strong></a><a class="post-navigation__next" href="#"><span>Next</span><strong>Verification notes for independent sites</strong></a></nav>
       </footer>
     </article>
     <aside class="article-sidebar" aria-label="Post navigation">
@@ -220,14 +223,70 @@ const article = `
     </aside>
   </div>`;
 
-const archiveRows = posts
+// 归档必须覆盖多年份、多月份：第二个月份曾被 grid 自动排进年份列，长标题被挤成逐字竖排。
+const archiveYears = [
+  {
+    year: 2026,
+    months: [
+      {
+        month: 10,
+        posts: [
+          { category: posts[0].category, date: "2026-10-14", title: posts[0].title },
+          { category: posts[1].category, date: "2026-10-08", title: posts[1].title },
+        ],
+      },
+      {
+        month: 9,
+        posts: [
+          {
+            category: "评测",
+            date: "2026-09-30",
+            title: "UpCloud 与 Vultr 高频 VPS 对比：新加坡与东京机房延迟、价格和带宽实测",
+          },
+          { category: "", date: "2026-09-12", title: posts[2].title },
+        ],
+      },
+    ],
+  },
+  {
+    year: 2025,
+    months: [
+      {
+        month: 12,
+        posts: [{ category: posts[3].category, date: "2025-12-28", title: posts[3].title }],
+      },
+    ],
+  },
+];
+
+function archiveRow(post) {
+  const category = post.category
+    ? `<a class="timeline-entry__category" href="#">${post.category}</a>`
+    : `<span class="timeline-entry__category timeline-entry__category--empty">Uncategorized</span>`;
+  return `
+          <li class="timeline-entry">
+            <time class="timeline-entry__date" datetime="${post.date}">${post.date.slice(5)}</time>
+            <a class="timeline-entry__title" href="/post.html">${post.title}</a>
+            ${category}
+          </li>`;
+}
+
+const archiveMarkup = archiveYears
   .map(
-    (post) => `
-      <li class="timeline-entry">
-        <time class="timeline-entry__date" datetime="${post.date}">${post.date.slice(5)}</time>
-        <a class="timeline-entry__title" href="/post.html">${post.title}</a>
-        <a class="timeline-entry__category" href="#">${post.category}</a>
-      </li>`,
+    ({ year, months }) => `
+    <section class="timeline-year">
+      <h2>${year}</h2>
+      <div class="timeline-year__months">${months
+        .map(
+          ({ month, posts: monthPosts }) => `
+        <div class="timeline-month">
+          <h3>Month ${month}</h3>
+          <ol>${monthPosts.map(archiveRow).join("")}</ol>
+        </div>`,
+        )
+        .join("")}
+      </div>
+    </section>`,
   )
   .join("");
 
@@ -236,15 +295,20 @@ const archives = `
     <h1>Archives</h1>
     <p>31 public posts, organized by publish date.</p>
   </header>
-  <div class="timeline">
-    <section class="timeline-year">
-      <h2>2026</h2>
-      <div class="timeline-month">
-        <h3>Recent posts</h3>
-        <ol>${archiveRows}</ol>
-      </div>
-    </section>
-  </div>`;
+  <div class="timeline">${archiveMarkup}</div>
+  <nav class="pagination" aria-label="Archive pagination"><span class="pagination__status">1 / 3</span><a class="pagination__link" href="#" rel="next"><span>Next</span><i data-lucide="arrow-right"></i></a></nav>`;
+
+const links = `
+  <header class="page-heading">
+    <p class="eyebrow">Connections</p>
+    <h1>Links</h1>
+    <p>Independent sites and creators worth following.</p>
+  </header>
+  <nav class="link-groups" aria-label="Link groups"><a class="is-active" href="#">All</a><a href="#">Friends</a><a href="#">Tools</a></nav>
+  <ul class="friend-grid">
+    <li><a href="#" rel="friend noopener noreferrer"><img src="/assets/images/rackora-mark.svg" alt="Rackora" width="44" height="44" /><span><strong>Rackora</strong><small>A content-first Halo theme.</small></span><i data-lucide="external-link" aria-hidden="true"></i></a></li>
+    <li><a href="#" rel="friend noopener noreferrer"><span><strong>没有 Logo 的友情链接</strong><small>名称不能被挤进头像列。</small></span><i data-lucide="external-link" aria-hidden="true"></i></a></li>
+  </ul>`;
 
 const layoutContract = `
   <section class="page-heading" aria-labelledby="plugin-page-title">
@@ -285,6 +349,20 @@ await writeFile(
   page("About wide logo - Rackora", about("wide"), "", "wide"),
 );
 await writeFile(path.join(output, "archives.html"), page("Archives - Rackora", archives));
+await writeFile(path.join(output, "links.html"), page("Links - Rackora", links));
+await writeFile(
+  path.join(output, "error.html"),
+  page(
+    "500 - Rackora",
+    `
+  <section class="error-page">
+    <p class="error-code">500</p>
+    <h1>Something went wrong</h1>
+    <p>The server could not complete the request. Please try again later.</p>
+    <div class="error-actions"><a class="button button--primary" href="/">Back home</a><a class="button" href="/archives.html">Browse archives</a></div>
+  </section>`,
+  ),
+);
 await writeFile(
   path.join(output, "layout-contract.html"),
   page("Layout contract - Rackora", layoutContract),

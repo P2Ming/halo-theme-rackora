@@ -26,7 +26,8 @@ work to local changes or skip publishing; otherwise follow the complete release 
 10. Review `git diff --check`, the complete diff, and `git status`. Commit only the intended files.
 11. Create an annotated `vX.Y.Z` tag, push `main`, then push the tag to `origin`.
 12. Wait for the GitHub `Release theme` workflow to finish successfully. Confirm that the matching
-    GitHub Release and `theme-rackora-X.Y.Z.zip` asset exist.
+    GitHub Release and `theme-rackora-X.Y.Z.zip` asset exist. When the `HALO_APP_ID` variable and
+    `HALO_PAT` secret are configured, also confirm the `Sync release to Halo App Store` step passed.
 13. Compare the local and remote ZIP SHA-256 digests. They must match before declaring success.
 14. Confirm the worktree is clean and `main`, `origin/main`, and the release tag resolve to the
     expected commit.

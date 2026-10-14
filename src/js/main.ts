@@ -75,11 +75,17 @@ function uiText(english: string, chinese: string): string {
 }
 
 function renderIcons(): void {
-  for (const icon of document.querySelectorAll<HTMLElement>("i[data-lucide]")) {
+  const placeholders = document.querySelectorAll<HTMLElement>("i[data-lucide]");
+  if (!placeholders.length) return;
+  for (const icon of placeholders) {
     const alias = socialIconAliases[icon.dataset.lucide || ""];
     if (alias) icon.dataset.lucide = alias;
   }
   createIcons({ icons });
+  // createIcons 会在生成的 svg 上保留 data-lucide，不清除的话每次调用都会把整页图标重建一遍。
+  for (const svg of document.querySelectorAll("svg[data-lucide]")) {
+    svg.removeAttribute("data-lucide");
+  }
 }
 
 function setButtonIcon(button: HTMLButtonElement, name: "menu" | "moon" | "sun" | "x"): void {
@@ -149,13 +155,19 @@ function normalizePath(pathname: string): string {
 function initActiveNavigation(): void {
   const current = normalizePath(window.location.pathname);
   for (const link of document.querySelectorAll<HTMLAnchorElement>("[data-site-nav] a[href]")) {
-    let path: string;
+    const rawHref = link.getAttribute("href") || "";
+    let url: URL;
     try {
-      path = normalizePath(new URL(link.href, window.location.origin).pathname);
+      url = new URL(link.href, window.location.origin);
     } catch {
       continue;
     }
-    const active = path === current || (path !== "/" && current.startsWith(`${path}/`));
+    // 下拉父级常用的 "#"、空链接和站外链接都会解析出与当前页相同的路径，不能参与高亮判断。
+    const comparable =
+      rawHref !== "" && !rawHref.startsWith("#") && url.origin === window.location.origin;
+    const path = normalizePath(url.pathname);
+    const active =
+      comparable && (path === current || (path !== "/" && current.startsWith(`${path}/`)));
     link.classList.toggle("is-active", active);
     if (active) link.setAttribute("aria-current", "page");
     else link.removeAttribute("aria-current");
@@ -194,6 +206,8 @@ function initThemeToggle(): void {
     update();
   });
 
+  // 跟随系统配色时，系统切换明暗后同步按钮图标与提示文字。
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", update);
   update();
 }
 
@@ -226,10 +240,11 @@ function initSiteUptime(): void {
     }
 
     const days = Math.floor(elapsed / 86_400_000) + 1;
+    // 紧凑统计的英文标签已是 "Days"，数值只保留数字，避免在窄列里折成两行。
     target.textContent = target.hasAttribute("data-site-launch-compact")
       ? isChineseUi()
         ? `${days} 天`
-        : `${days} days`
+        : String(days)
       : isChineseUi()
         ? `运行 ${days} 天`
         : `Online for ${days} days`;

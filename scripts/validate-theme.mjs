@@ -331,6 +331,90 @@ assert.doesNotMatch(
   "word-break:break-word behaves like anywhere for min-content and can collapse title columns",
 );
 assert.match(
+  archives,
+  /<h2 th:text="\$\{archive\.year\}">[\s\S]*?<div class="timeline-year__months">\s*<div class="timeline-month" th:each="month : \$\{archive\.months\}">/,
+  "archive months must share one grid cell so later months never fall into the year column",
+);
+assert.match(
+  mainStyles,
+  /\.timeline-year__months\s*\{[^}]*min-width:\s*0/,
+  "the archive month column must be allowed to shrink with long titles",
+);
+assert.match(
+  previewScript,
+  /month: 10[\s\S]*?month: 9[\s\S]*?year: 2025[\s\S]*?timeline-year__months/,
+  "archive preview must exercise several months and years",
+);
+assert.match(
+  archives,
+  /rel="prev"[\s\S]*rel="next"/,
+  "archive pagination needs prev/next relations",
+);
+assert.match(
+  mainStyles,
+  /\.pagination__link\[rel="prev"\]\s*\{[^}]*grid-column:\s*1/,
+  "previous-page links must stay in the left pagination column",
+);
+assert.match(
+  mainStyles,
+  /\.pagination__link\[rel="next"\]\s*\{[^}]*grid-column:\s*3[^}]*justify-self:\s*end/,
+  "next-page links must stay right-aligned even on the first page",
+);
+assert.match(
+  mainStyles,
+  /\.pagination__status\s*\{[^}]*grid-column:\s*2/,
+  "the page counter must stay centered when one direction is missing",
+);
+for (const source of [post, postDocs]) {
+  assert.match(
+    source,
+    /class="post-navigation__next"\s+th:if="\$\{cursor\.hasNext\(\)\}"/,
+    "next-post links need a stable hook for right-column placement",
+  );
+}
+assert.match(
+  mainStyles,
+  /\.post-navigation__next\s*\{[^}]*grid-column:\s*2[^}]*text-align:\s*right/,
+  "a lone next-post link must not move into the previous-post column",
+);
+assert.match(
+  mainStyles,
+  /@media \(max-width: 720px\)[\s\S]*?\.post-navigation__next\s*\{[^}]*grid-column:\s*auto/,
+  "stacked mobile post navigation must not create an implicit second column",
+);
+assert.match(
+  mainStyles,
+  /\.site-nav \.submenu::before\s*\{[^}]*top:\s*-8px/,
+  "desktop submenus need a hover bridge across the gap below the parent item",
+);
+for (const [selector, label] of [
+  ["\\.friend-grid > li > a", "friend links"],
+  ["\\.ad-card a", "sponsored cards"],
+]) {
+  assert.match(
+    mainStyles,
+    new RegExp(
+      `${selector}:not\\(:has\\(img\\)\\)\\s*\\{[^}]*grid-template-columns:\\s*minmax\\(0, 1fr\\) auto`,
+    ),
+    `${label} without an image must not squeeze text into the image column`,
+  );
+}
+assert.match(
+  mainStyles,
+  /\.home-heading__brand,\s*\.eyebrow\s*\{/,
+  "plugin and documentation eyebrows must share the home eyebrow style",
+);
+assert.match(
+  mainStyles,
+  /\.archive-heading h1,\s*\.author-heading h1,\s*\.page-heading h1\s*\{/,
+  "plugin page headings must use the shared display heading style",
+);
+assert.doesNotMatch(
+  mainStyles,
+  /background-attachment:\s*fixed/,
+  "the page backdrop must use a fixed layer instead of a fixed body background",
+);
+assert.match(
   mainStyles,
   /\.shell\s*\{[\s\S]*?var\(--rack-wide\)/,
   "all pages share the same shell canvas width",
@@ -763,6 +847,42 @@ assert.match(
   /function initActiveNavigation\(/,
   "primary navigation must mark the current page",
 );
+assert.match(
+  mainScript,
+  /rawHref !== "" && !rawHref\.startsWith\("#"\) && url\.origin === window\.location\.origin/,
+  "placeholder (#) and external menu links must never be marked as the current page",
+);
+assert.match(
+  mainScript,
+  /createIcons\(\{ icons \}\);[\s\S]*?removeAttribute\("data-lucide"\)/,
+  "rendered icons must drop their marker so later renders do not rebuild every SVG",
+);
+assert.match(
+  mainScript,
+  /matchMedia\("\(prefers-color-scheme: dark\)"\)\.addEventListener\("change", update\)/,
+  "the color toggle must follow system scheme changes in auto mode",
+);
+assert.match(
+  postScript,
+  /progress\.style\.transform = `scaleX\(\$\{ratio\}\)`/,
+  "reading progress must animate with transform instead of layout-triggering width",
+);
+assert.match(
+  postScript,
+  /window\.requestAnimationFrame\(update\)/,
+  "reading progress updates must be animation-frame throttled",
+);
+assert.match(previewScript, /links\.html/, "preview must exercise the links page");
+assert.match(
+  previewScript,
+  /friend-grid[\s\S]*?<li><a href="#" rel="friend noopener noreferrer"><span>/,
+  "links preview must include a friend link without a logo",
+);
+assert.match(
+  previewScript,
+  /class="ad-card"><a [^>]*><span class="ad-card__body">/,
+  "article preview must include a sponsored card without an image",
+);
 assert.match(shareBar, /data-share-link/, "posts must expose a copy-link control");
 assert.match(shareBar, /data-share-bar|data-share=/, "posts must expose social share controls");
 assert.match(shareBar, /share-bar__x-mark[^>]*>X</, "X sharing must use current branding");
@@ -1050,6 +1170,111 @@ assert.doesNotMatch(
   /\|#\$\{tag\.spec\.displayName\}\|/,
   "post tags must not prefix labels with #",
 );
+
+function contrastRatio(foreground, background) {
+  const luminance = (hex) => {
+    const [red, green, blue] = hex.match(/[0-9a-f]{2}/gi).map((part) => {
+      const channel = Number.parseInt(part, 16) / 255;
+      return channel <= 0.03928 ? channel / 12.92 : ((channel + 0.055) / 1.055) ** 2.4;
+    });
+    return 0.2126 * red + 0.7152 * green + 0.0722 * blue;
+  };
+  const [lighter, darker] = [luminance(foreground), luminance(background)].sort((a, b) => b - a);
+  return (lighter + 0.05) / (darker + 0.05);
+}
+const colorBlocks = {
+  light: mainStyles.match(/:root\s*\{([^}]*)\}/)?.[1] ?? "",
+  dark: mainStyles.match(/:root\[data-color-scheme="dark"\]\s*\{([^}]*)\}/)?.[1] ?? "",
+};
+const colorToken = (block, name) => {
+  const value = block.match(new RegExp(`--rack-${name}:\\s*#([0-9a-f]{6})\\b`, "i"))?.[1];
+  assert.ok(value, `--rack-${name} must be a six-digit hex color for contrast checks`);
+  return value;
+};
+for (const [scheme, block] of Object.entries(colorBlocks)) {
+  for (const [text, background] of [
+    ["muted", "paper"],
+    ["muted", "surface"],
+    ["ink-soft", "paper"],
+    ["amber", "amber-soft"],
+  ]) {
+    const ratio = contrastRatio(colorToken(block, text), colorToken(block, background));
+    assert.ok(
+      ratio >= 4.5,
+      `${scheme} --rack-${text} on --rack-${background} must meet WCAG AA (${ratio.toFixed(2)})`,
+    );
+  }
+}
+const codeCommentColor = mainStyles.match(
+  /\.hljs-comment,\s*\.hljs-quote\s*\{[^}]*color:\s*#([0-9a-f]{6})/i,
+)?.[1];
+assert.ok(
+  codeCommentColor && contrastRatio(codeCommentColor, colorToken(colorBlocks.light, "code")) >= 4.5,
+  "code comments must meet WCAG AA on the code background",
+);
+
+const errorFallback = await read("src/error/error.html");
+assert.match(
+  errorFallback,
+  /<include\s+src=["']layout\.html["']>/,
+  "error fallback must use the layout",
+);
+assert.equal(errorFallback.match(/<h1\b/gi)?.length ?? 0, 1, "error fallback needs exactly one H1");
+assert.match(
+  errorFallback,
+  /name="robots" content="noindex,follow"/,
+  "error pages must not be indexed",
+);
+assert.match(
+  errorFallback,
+  /showDetail = \$\{isClientError and not #strings\.isEmpty\(error\?\.detail\)\}[\s\S]*?th:if="\$\{showDetail\}" th:text="\$\{error\.detail\}"/,
+  "only 4xx details may reach visitors; 5xx details can expose server internals",
+);
+assert.doesNotMatch(
+  sourceMarkup.join("\n") + postScript + mainScript,
+  /TODO\(你来实现\)/,
+  "contribution placeholders must be resolved before release",
+);
+assert.match(
+  postScript,
+  /function showShareLinkFeedback\([\s\S]*?window\.clearTimeout\(shareFeedbackTimers\.get\(button\)\)[\s\S]*?setShareLinkIcon\(button, copied \? "check" : "x"\)/,
+  "copy-link feedback must reset pending timers and swap to a success or failure icon",
+);
+assert.match(
+  postScript,
+  /status\.setAttribute\("role", "status"\)/,
+  "copy-link results must be announced through a status live region",
+);
+assert.match(
+  packageNormalizer,
+  /name: "THIRD_PARTY_LICENSES\.txt"/,
+  "release packages must ship bundled font, icon, and highlighter license texts",
+);
+for (const dependency of Object.keys(packageManifest.dependencies ?? {})) {
+  assert.ok(
+    packageNormalizer.includes(`"${dependency}"`),
+    `${dependency} is redistributed and must be listed in THIRD_PARTY_LICENSES.txt`,
+  );
+}
+const releaseWorkflow = await read(".github/workflows/release.yml");
+assert.match(
+  releaseWorkflow,
+  /id: appstore[\s\S]*?HALO_PAT: \$\{\{ secrets\.HALO_PAT \}\}[\s\S]*?if: steps\.appstore\.outputs\.enabled == 'true'\s+uses: halo-sigs\/reusable-workflows\/app-store-release-action@v5/,
+  "App Store sync must stay opt-in until the app ID and token are configured",
+);
+assert.match(
+  releaseWorkflow,
+  /release-id: \$\{\{ steps\.release\.outputs\.id \}\}/,
+  "App Store sync must reference the GitHub release created in the same run",
+);
+for (const workflowName of await readdir(path.join(root, ".github", "workflows"))) {
+  const workflow = await read(`.github/workflows/${workflowName}`);
+  assert.doesNotMatch(
+    workflow,
+    /app-id:\s*app-foo|theme-cd\.yaml/,
+    `${workflowName} must not keep template placeholders or re-upload release assets`,
+  );
+}
 
 await read("public/assets/images/rackora-mark.svg");
 const builtThemeMark = await read("templates/assets/images/rackora-mark.svg");

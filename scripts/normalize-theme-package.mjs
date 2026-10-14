@@ -26,6 +26,12 @@ const requiredFiles = [
   "LICENSE",
   "docs/plugin-compatibility.md",
 ];
+const thirdPartyPackages = [
+  ["IBM Plex Sans", "@fontsource/ibm-plex-sans"],
+  ["Source Serif 4", "@fontsource/source-serif-4"],
+  ["Highlight.js", "highlight.js"],
+  ["Lucide", "lucide"],
+];
 const textExtensions = new Set([
   ".css",
   ".html",
@@ -45,6 +51,27 @@ async function readReleaseFile(relativePath) {
   return isText
     ? Buffer.from(contents.toString("utf8").replaceAll("\r\n", "\n"), "utf8")
     : contents;
+}
+
+// 字体、图标和代码高亮随主题再分发，OFL / BSD / ISC 都要求附带版权声明与许可证原文。
+async function readThirdPartyLicenses() {
+  const sections = [];
+  for (const [label, packageName] of thirdPartyPackages) {
+    const packageRoot = path.join(root, "node_modules", packageName);
+    const { version, license } = JSON.parse(
+      await readFile(path.join(packageRoot, "package.json"), "utf8"),
+    );
+    const text = (await readFile(path.join(packageRoot, "LICENSE"), "utf8"))
+      .replaceAll("\r\n", "\n")
+      .trim();
+    sections.push(
+      `${label} (${packageName}@${version}, ${license})\n${"=".repeat(72)}\n\n${text}\n`,
+    );
+  }
+  return Buffer.from(
+    `Rackora bundles the following third-party assets in templates/assets.\nTheir copyright notices and license texts are reproduced below.\n\n${sections.join("\n")}`,
+    "utf8",
+  );
 }
 
 for (const relativePath of requiredFiles) {
@@ -87,6 +114,11 @@ for (const relativePath of requiredFiles) {
     name: relativePath,
   });
 }
+archive.append(await readThirdPartyLicenses(), {
+  date: releaseTimestamp,
+  mode: 0o644,
+  name: "THIRD_PARTY_LICENSES.txt",
+});
 const templateEntries = await readdir(path.join(root, "templates"), {
   recursive: true,
   withFileTypes: true,

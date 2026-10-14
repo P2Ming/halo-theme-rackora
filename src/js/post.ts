@@ -340,7 +340,57 @@ function initAffiliateMarkup(content: HTMLElement): void {
   }
 }
 
+const shareFeedbackTimers = new WeakMap<HTMLButtonElement, number>();
+
+function setShareLinkIcon(button: HTMLButtonElement, name: "copy" | "check" | "x"): void {
+  button.querySelector("svg, i[data-lucide]")?.remove();
+  const icon = document.createElement("i");
+  icon.dataset.lucide = name;
+  icon.setAttribute("aria-hidden", "true");
+  button.prepend(icon);
+}
+
+// 复制文章链接后的反馈：图标切换为对勾 / 叉号，同步可访问名称并由 live region 播报，1.6 秒后恢复。
+// 连续点击时先清掉上一次的恢复计时，避免旧计时提前把新状态还原。
+function showShareLinkFeedback(button: HTMLButtonElement, copied: boolean): void {
+  const defaultLabel = (button.dataset.defaultLabel ||= button.getAttribute("aria-label") || "");
+  const message = copied ? uiText("Link copied", "链接已复制") : uiText("Copy failed", "复制失败");
+  const status = button
+    .closest("[data-share-bar]")
+    ?.querySelector<HTMLElement>("[data-share-status]");
+
+  window.clearTimeout(shareFeedbackTimers.get(button));
+  button.classList.toggle("is-copied", copied);
+  button.classList.toggle("is-failed", !copied);
+  button.setAttribute("aria-label", message);
+  button.title = message;
+  setShareLinkIcon(button, copied ? "check" : "x");
+  if (status) status.textContent = message;
+
+  shareFeedbackTimers.set(
+    button,
+    window.setTimeout(() => {
+      button.classList.remove("is-copied", "is-failed");
+      button.setAttribute("aria-label", defaultLabel);
+      button.title = defaultLabel;
+      setShareLinkIcon(button, "copy");
+      if (status) status.textContent = "";
+      document.dispatchEvent(new CustomEvent("rackora:icons"));
+    }, 1600),
+  );
+}
+
 function initShareLink(): void {
+  for (const bar of document.querySelectorAll<HTMLElement>("[data-share-bar]")) {
+    if (!bar.querySelector("[data-share-link]") || bar.querySelector("[data-share-status]"))
+      continue;
+    const status = document.createElement("span");
+    status.className = "share-bar__status";
+    status.dataset.shareStatus = "";
+    status.setAttribute("role", "status");
+    bar.append(status);
+  }
+
   for (const button of document.querySelectorAll<HTMLButtonElement>("[data-share-link]")) {
     button.addEventListener("click", async () => {
       const shareUrl =
@@ -350,10 +400,9 @@ function initShareLink(): void {
       const absolute = new URL(shareUrl, window.location.origin).href;
       try {
         await copyText(absolute);
-        button.classList.add("is-copied");
-        window.setTimeout(() => button.classList.remove("is-copied"), 1600);
+        showShareLinkFeedback(button, true);
       } catch {
-        button.classList.remove("is-copied");
+        showShareLinkFeedback(button, false);
       }
       document.dispatchEvent(new CustomEvent("rackora:icons"));
     });
@@ -447,12 +496,21 @@ function initReadingMetrics(content: HTMLElement): void {
 
   const progress = document.querySelector<HTMLElement>("[data-reading-progress]");
   if (!progress) return;
+  let updateScheduled = false;
   const update = (): void => {
+    updateScheduled = false;
     const max = document.documentElement.scrollHeight - window.innerHeight;
     const ratio = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
-    progress.style.width = `${ratio * 100}%`;
+    // transform 只触发合成，不像修改 width 那样每次滚动都引起布局。
+    progress.style.transform = `scaleX(${ratio})`;
   };
-  window.addEventListener("scroll", update, { passive: true });
+  const scheduleUpdate = (): void => {
+    if (updateScheduled) return;
+    updateScheduled = true;
+    window.requestAnimationFrame(update);
+  };
+  window.addEventListener("scroll", scheduleUpdate, { passive: true });
+  window.addEventListener("resize", scheduleUpdate);
   update();
 }
 

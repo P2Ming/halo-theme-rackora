@@ -4,7 +4,12 @@ English | [简体中文](README.md)
 
 Rackora is a content-first theme for Halo 2.x. It is designed for independent blogs, knowledge bases, technical documentation, and other sites that need a calm, durable publishing surface. The theme provides responsive reading, light/dark modes, article navigation, syntax highlighting, and page-level SEO without adding a separate frontend runtime.
 
-Current release: `v0.9.4`
+Current release: `v0.9.5`
+
+- License: [GPL-3.0](LICENSE) (free theme, no in-app purchase)
+- Halo compatibility: `>= 2.20.0`
+- Issues: [GitHub Issues](https://github.com/everett7623/halo-theme-rackora/issues)
+- Source: [halo-theme-rackora](https://github.com/everett7623/halo-theme-rackora)
 
 ## Who It Is For
 
@@ -12,7 +17,7 @@ Current release: `v0.9.4`
 - Sites with long Chinese or English titles, code, tables, and long-form articles.
 - Sites that want the theme to own presentation while Halo plugins provide search, RSS, comments, links, caching, and backups.
 
-Rackora reimplements an information hierarchy inspired by [Fuwari](https://github.com/saicaca/fuwari). It does not copy Fuwari Astro components or styles and does not require Astro, Svelte, Tailwind, or Pagefind at runtime. Fuwari is MIT-licensed; Rackora is released under GPL-3.0.
+Rackora reimplements an information hierarchy inspired by [Fuwari](https://github.com/saicaca/fuwari), an Astro static-blog theme released under the MIT License. It is not a fork of any Halo theme, does not copy Fuwari Astro components or styles, and does not require Astro, Svelte, Tailwind, or Pagefind at runtime.
 
 ## Features
 
@@ -20,43 +25,57 @@ Rackora reimplements an information hierarchy inspired by [Fuwari](https://githu
 - Eleven standard Halo routes: home, post, page, archive, tag, category, author, links, and 404 templates, plus About and Documentation custom templates.
 - Responsive navigation with nested menus, back-to-top control, reduced-motion support, and light, dark, and print styles.
 - Author information, reading progress, reading time, table of contents, heading anchors, copy-link action, related posts, series, and adjacent-post navigation.
-- Highlight.js syntax highlighting with on-demand language bundles, code-copy controls, responsive tables, image lightbox, and VPS product-table detection.
+- Highlight.js syntax highlighting with on-demand language bundles, code-copy controls, responsive tables, and image lightbox.
 - X, Facebook, LinkedIn, Reddit, Telegram, WhatsApp, Weibo, email, and copy-link sharing, each configurable in the theme settings.
 - Halo comment, search, and footer extension points, with official RSS and Links plugin integration.
 - One page H1, self-referencing canonical URLs, Open Graph, Twitter Cards, breadcrumbs, and WebSite / Organization / BlogPosting / TechArticle JSON-LD.
-- Optional GA4, Microsoft Clarity, Baidu Analytics, ICP, public-security filing details, structured ad slots, and affiliate disclosures.
+- Optional GA4, Microsoft Clarity, Baidu Analytics, ICP, public-security filing details, structured ad slots, and affiliate disclosures. These capabilities are off by default.
 
-## Compatibility
+## Compatibility and Dependencies
 
-- Halo `>= 2.20.0`
-- Node.js 24
-- pnpm `10.33.0`
+**Runtime requires only Halo `>= 2.20.0`.** Node.js and pnpm are needed only when building from source.
+
+The theme can be installed, enabled, switched, and uninstalled on its own. The official plugins below are optional; missing plugins hide the matching entry and do not break reading:
+
+| Capability   | Plugin                                                      | Without the plugin                    |
+| ------------ | ----------------------------------------------------------- | ------------------------------------- |
+| Search       | [Search Widget](https://www.halo.run/store/apps/app-DlacW)  | Search button is hidden               |
+| Comments     | [Comment Widget](https://www.halo.run/store/apps/app-YXyaD) | Comment area is not rendered          |
+| RSS          | [RSS](https://www.halo.run/store/apps/app-KhIVw)            | Feed discovery links are omitted      |
+| Friend links | [Links](https://www.halo.run/store/apps/app-hfbQg)          | `/links` has no data                  |
+| Sitemap      | [Sitemap](https://www.halo.run/store/apps/app-QDFMI)        | The theme does not generate a sitemap |
+
+Keep Halo page static cache and automatic backup when those services are needed. See [`docs/plugin-compatibility.md`](docs/plugin-compatibility.md) for the full responsibility matrix.
 
 ## Installation
 
-### Install from a release
+1. Download `theme-rackora-X.Y.Z.zip` from [GitHub Releases](https://github.com/everett7623/halo-theme-rackora/releases). Upload the release artifact as-is; do not unzip and re-zip it.
+2. Open Halo Console → Themes → Upload Theme, then select the ZIP.
+3. Enable Rackora.
+4. Click “Reload configuration” in Theme Management so the settings form and defaults become available.
+5. Check the site title, subtitle, primary menu, category descriptions, and whether search, comments, RSS, and links plugins are enabled as needed.
 
-1. Download `theme-rackora-X.Y.Z.zip` from [GitHub Releases](https://github.com/everett7623/halo-theme-rackora/releases).
-2. Open Halo Console → Theme Management → Upload Theme, then select the ZIP.
-3. Enable Rackora. After upgrading an existing installation, click “Reload configuration” in Theme Management so new or changed settings become available.
-4. Check the site title, subtitle, menus, category descriptions, search/comments plugins, and public routes.
+The theme directory and `metadata.name` in `theme.yaml` must remain `theme-rackora`.
 
-### Build from source
+The default interface language is English. To switch theme UI copy to Chinese, open **Theme Settings → Basic → Interface language** and choose Simplified Chinese. Halo site title, posts, and menus are left unchanged.
 
-```powershell
-pnpm install
-pnpm build
-```
+## Usage
 
-Upload `dist/theme-rackora-X.Y.Z.zip` after the build completes. The theme directory and `metadata.name` in `theme.yaml` must remain `theme-rackora`.
+1. Configure the primary menu under Halo Appearance → Menus. Rackora reads the primary menu and supports nested items.
+2. Choose a logo mode and upload the matching image under **Theme Settings → Appearance**. See [Logo Setup](#logo-setup).
+3. Fill in Basic, Sidebar, Post, SEO, and Filing groups as needed. Title, subtitle, and the global description come from Halo site settings; do not duplicate them in theme settings.
+4. For an about page, create a single page and select the **About** template. It shows the profile card, social links, and selected logo.
+5. For long technical writing, edit a post and select the **Documentation** template. It keeps a persistent table of contents.
+6. The friend-links page requires the official Links plugin; visit `/links` after enabling it.
+7. Comments and search come from the matching official plugins. The theme only shows those entries when the plugin is available.
 
 ## Logo Setup
 
 Logo uploads are located at **Theme Settings → Appearance**, not under the SEO field named “Organization Logo”. If the fields are missing after an install or upgrade, click “Reload configuration” in Halo Theme Management first.
 
 1. Choose a value under “Logo display mode”.
-2. Choose `1:1 Square Logo + site title`, then upload the “1:1 Square Logo” shown below it. The header, homepage profile, and About template show the square image together with the Halo site title and subtitle.
-3. Choose `3:1 Wide Logo (text included in image)`, then upload the “3:1 Wide Logo” shown below it. The header, homepage profile, and About template show the image directly; the header and profile do not repeat the title text.
+2. Choose `1:1 Square Logo + site title`, then upload the “1:1 Square Logo”. The header, homepage profile, and About template show the square image together with the Halo site title and subtitle.
+3. Choose `3:1 Wide Logo (text included in image)`, then upload the “3:1 Wide Logo”. The header, homepage profile, and About template show the image directly; the header and profile do not repeat the title text.
 
 SVG, PNG, and WebP are recommended. Only the upload field for the selected mode is displayed; switching modes does not delete the other image. Fallbacks are:
 
@@ -67,7 +86,7 @@ The SEO “Organization Logo” field is used only for Organization / WebSite st
 
 ## Theme Settings
 
-The settings page is organized into nine groups:
+The settings page is organized into nine groups, each with safe defaults:
 
 | Group        | Main options                                                                                     |
 | ------------ | ------------------------------------------------------------------------------------------------ |
@@ -78,36 +97,99 @@ The settings page is organized into nine groups:
 | Integrations | Official Links page and footer entry                                                             |
 | SEO          | Tag/archive indexing policy, site verification, and Organization entity                          |
 | Analytics    | GA4, Microsoft Clarity, and Baidu Analytics IDs; disabled by default                             |
-| Ads          | Global switch, disclosure text, and sortable placements                                          |
+| Ads          | Global switch, disclosure text, and sortable placements; disabled by default                     |
 | Filing       | ICP and public-security filing numbers and URLs                                                  |
 
-The site title, subtitle, and global description come from Halo site settings. Legacy `content.*` and `stats.*` configuration keys remain readable for upgrades.
+Legacy `content.*` and `stats.*` configuration keys remain readable after upgrades.
+
+## Upgrade
+
+1. Back up Halo data, or confirm that automatic backups are available.
+2. Upload the new ZIP, or update from the Halo App Store after the theme is listed.
+3. Click “Reload configuration” in Theme Management.
+4. Spot-check home, post, category, tag, archive, page, and 404 routes.
+5. If page static cache is enabled, clear it and re-check `<head>` output.
+
+Existing setting keys are preserved. New fields use theme defaults and do not wipe previous values. Switching away from Rackora and back, or switching from another theme, does not require manual content repair.
+
+## Disable and Uninstall
+
+1. Switch to another theme and confirm the public site still loads.
+2. Then disable or uninstall Rackora.
+3. Uninstalling the theme does not delete posts, pages, attachments, comments, or menus.
+4. Rackora metadata fields on posts, tags, and categories remain on those Halo objects, but they do not affect other themes.
+5. Theme settings live in a Halo ConfigMap. After uninstall, clean that data up only with a backup and Halo’s usual configuration workflow.
 
 ## Plugin Boundary
 
 Rackora owns the frontend shell, syntax highlighting, table of contents, tag presentation, back-to-top control, frontend analytics hooks, and page-level SEO structure. It does not replace server-side Sitemap, search, RSS, comments, friend links, caching, backups, authentication, or content storage.
 
-Keep Halo Sitemap, Search Widget, RSS, Comment Widget, Links, Page Static Cache, and Automatic Backup when those services are needed. Older themes may leave plugins such as Time Factor SEO enabled; they are not Rackora dependencies and will duplicate canonical, Open Graph, and article JSON-LD output. See [`docs/plugin-compatibility.md`](docs/plugin-compatibility.md) for the responsibility matrix.
+Older themes may leave plugins such as Time Factor SEO enabled. They are not Rackora dependencies and will duplicate canonical, Open Graph, and article JSON-LD output. Disable conflicting SEO plugins, clear page caches, and spot-check the `<head>` on the home, post, category, and tag routes.
 
 ## Content Metadata
 
 Rackora registers Halo metadata fields for:
 
-- Posts: primary keyword, search intent, promotion relationship, content verification date, next review date, and manually confirmed Pillar status.
+- Posts: primary keyword, search intent, promotion relationship, content verification date, next review date, manually confirmed Pillar status, and series.
 - Tags: indexing policy and visible summary.
 - Categories: featured-post entry.
 
 Primary keywords are editorial review data only; the theme does not emit ineffective `meta keywords` or infer Pillar structure from tags.
 
-## Development and Validation
+## Privacy, Analytics, and External Services
+
+By default the theme does **not** load third-party analytics, ads, or remote fonts. Fonts, icons, and syntax highlighting required for reading are bundled in the package.
+
+External services are requested only after a site administrator opts in:
+
+| Capability             | Settings group | Destination                                | Default |
+| ---------------------- | -------------- | ------------------------------------------ | ------- |
+| GA4                    | Analytics      | `www.googletagmanager.com`                 | Off     |
+| Microsoft Clarity      | Analytics      | `www.clarity.ms`                           | Off     |
+| Baidu Analytics        | Analytics      | `hm.baidu.com`                             | Off     |
+| Site-verification meta | SEO            | No network request; meta tags only         | Empty   |
+| Theme ad slots         | Ads            | Linked only when a destination URL is set  | Off     |
+| Social share buttons   | Post           | Navigate to the selected platform on click | On      |
+
+The theme does not collect, upload, or sell site content, user accounts, comments, or access logs. Analytics and ads are configured by the site owner, who remains responsible for their privacy policy. Turning off “Enable third-party analytics” or “Enable theme ads” immediately stops the matching scripts and slots.
+
+## Third-Party Assets and Licenses
+
+Rackora is released under [GPL-3.0](LICENSE). The install package also includes:
+
+| Asset          | Use                  | License      |
+| -------------- | -------------------- | ------------ |
+| IBM Plex Sans  | UI font              | OFL-1.1      |
+| Source Serif 4 | Display / body serif | OFL-1.1      |
+| Highlight.js   | Syntax highlighting  | BSD-3-Clause |
+| Lucide         | Icons                | ISC          |
+
+These assets are bundled locally and are not loaded from a CDN; their full copyright notices and license texts ship in `THIRD_PARTY_LICENSES.txt` inside the release package. Fuwari is an information-hierarchy reference only; its source is not included.
+
+## Troubleshooting
+
+- **New settings missing after upgrade:** Theme Management → Reload configuration, then refresh Console.
+- **Wrong header logo:** Upload it in the Appearance group, not the SEO organization logo field.
+- **Chinese UI copy still in English:** Set Basic → Interface language to Simplified Chinese.
+- **No search, comments, RSS, or friend links:** Install and enable the matching official plugin. The theme does not fail when a plugin is absent.
+- **Duplicate canonical or JSON-LD:** Disable Time Factor SEO or similar injectors, then clear page cache.
+- **Stale frontend styles:** Clear the browser cache, or refresh page static cache. For a development Halo instance, set `SPRING_THYMELEAF_CACHE=false`.
+- **ZIP install fails:** Use `theme-rackora-X.Y.Z.zip` from GitHub Releases. Do not upload the source tree or a re-zipped folder.
+
+## Build from Source
 
 ```powershell
 pnpm install
+pnpm build
+```
+
+Upload `dist/theme-rackora-X.Y.Z.zip` after the build completes. Source builds require Node.js 24 and pnpm `10.33.0`.
+
+```powershell
 pnpm check
 pnpm build-only
 pnpm test
 pnpm test:budget
-pnpm build
 pnpm preview
 ```
 
@@ -117,13 +199,13 @@ pnpm preview
 - `scripts/validate-theme.mjs`: route, H1, content-contract, settings, and extension checks.
 - `scripts/create-preview.mjs`: local visual fixtures, not a replacement for a running Halo instance.
 
-Set `SPRING_THYMELEAF_CACHE=false` for a development Halo instance. `pnpm build` runs the build, static validation, performance budget, and reproducible ZIP packaging. Release packages are limited to `400 KiB`; `dist/` keeps only the current ZIP.
+`pnpm build` runs the build, static validation, performance budget, and reproducible ZIP packaging. Release packages are limited to `400 KiB`; `dist/` keeps only the current ZIP.
 
 ## SEO Boundary
 
 Rackora emits a self-referencing canonical URL, Open Graph, Twitter Cards, visible breadcrumbs, author/date semantics, and JSON-LD for the current route. Page 2 and later of the home, category, tag, author, and archive lists include the page number in the canonical URL and title, and emit `rel="prev"` / `rel="next"`. Tag and archive `noindex` policies are configurable and do not modify the Sitemap.
 
-Custom canonicals, content consolidation, redirects, Sitemap management, reverse-proxy fixes, and Rich Results verification remain site operations. Disable conflicting SEO plugins, clear page caches, and spot-check the `<head>` on the home, post, category, and tag routes after deployment.
+Custom canonicals, content consolidation, redirects, Sitemap management, reverse-proxy fixes, and Rich Results verification remain site operations.
 
 ## Versioning and Releases
 

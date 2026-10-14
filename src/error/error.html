@@ -1,0 +1,40 @@
+<include src="layout.html">
+  <template name="head">
+    <title th:text="|${error?.status ?: 500} - ${site.title}|">Error</title>
+    <meta name="robots" content="noindex,follow" />
+  </template>
+
+  <section
+    class="error-page"
+    th:with="isZhCN = ${theme.config.basic?.ui_language == 'zh-CN'},status = ${error?.status ?: 500},isClientError = ${status >= 400 and status < 500},showDetail = ${isClientError and not #strings.isEmpty(error?.detail)}"
+  >
+    <p class="error-code" th:text="${status}">500</p>
+    <h1
+      th:text="${isClientError ? (isZhCN ? '无法访问这个页面' : 'This page is unavailable') : (isZhCN ? '服务暂时不可用' : 'Something went wrong')}"
+    >
+      Something went wrong
+    </h1>
+    <!--/* 只展示 4xx 的说明；5xx 的 detail 可能包含服务端异常信息，不对访客公开 */-->
+    <p th:if="${showDetail}" th:text="${error.detail}"></p>
+    <p
+      th:unless="${showDetail}"
+      th:text="${isClientError ? (isZhCN ? '请检查地址，或返回首页继续浏览。' : 'Check the address, or return home to keep reading.') : (isZhCN ? '服务器暂时无法完成请求，请稍后重试。' : 'The server could not complete the request. Please try again later.')}"
+    >
+      The server could not complete the request. Please try again later.
+    </p>
+    <div class="error-actions">
+      <a
+        class="button button--primary"
+        th:href="@{/}"
+        th:text="${isZhCN ? '返回首页' : 'Back home'}"
+        >Back home</a
+      >
+      <a
+        class="button"
+        th:href="@{${site.routes.archivesUri}}"
+        th:text="${isZhCN ? '浏览归档' : 'Browse archives'}"
+        >Browse archives</a
+      >
+    </div>
+  </section>
+</include>

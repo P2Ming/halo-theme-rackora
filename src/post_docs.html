@@ -103,7 +103,11 @@
             >
             <strong th:text="${cursor.previous.spec.title}"></strong>
           </a>
-          <a th:if="${cursor.hasNext()}" th:href="@{${cursor.next.status.permalink}}">
+          <a
+            class="post-navigation__next"
+            th:if="${cursor.hasNext()}"
+            th:href="@{${cursor.next.status.permalink}}"
+          >
             <span th:text="${theme.config.basic.ui_language == 'zh-CN' ? '下一篇' : 'Next'}"
               >Next</span
             >
