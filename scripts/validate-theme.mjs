@@ -1259,7 +1259,7 @@ for (const dependency of Object.keys(packageManifest.dependencies ?? {})) {
 const releaseWorkflow = await read(".github/workflows/release.yml");
 assert.match(
   releaseWorkflow,
-  /id: appstore[\s\S]*?HALO_PAT: \$\{\{ secrets\.HALO_PAT \}\}[\s\S]*?if: steps\.appstore\.outputs\.enabled == 'true'\s+uses: halo-sigs\/reusable-workflows\/app-store-release-action@v5/,
+  /id: appstore[\s\S]*?HALO_PAT: \$\{\{ secrets\.HALO_PAT \}\}[\s\S]*?if: steps\.appstore\.outputs\.enabled == 'true'\s+uses: halo-sigs\/reusable-workflows\/app-store-release-action@[0-9a-f]{40} # v5/,
   "App Store sync must stay opt-in until the app ID and token are configured",
 );
 assert.match(
@@ -1267,6 +1267,20 @@ assert.match(
   /release-id: \$\{\{ steps\.release\.outputs\.id \}\}/,
   "App Store sync must reference the GitHub release created in the same run",
 );
+assert.match(
+  releaseWorkflow,
+  /uses: actions\/checkout@\S+\s+with:\s+(?:#[^\n]*\s+)*persist-credentials: false/,
+  "the release job must not leave its write token in .git/config for dependency scripts",
+);
+for (const step of releaseWorkflow.split(/\n\s*- name: /).slice(1)) {
+  const action = step.match(/uses:\s*([^@\s]+)@(\S+)/);
+  if (!action || action[1].startsWith("actions/") || !/secrets\./.test(step)) continue;
+  assert.match(
+    action[2],
+    /^[0-9a-f]{40}$/,
+    `${action[1]} receives secrets and must be pinned to a reviewed commit SHA`,
+  );
+}
 for (const workflowName of await readdir(path.join(root, ".github", "workflows"))) {
   const workflow = await read(`.github/workflows/${workflowName}`);
   assert.doesNotMatch(

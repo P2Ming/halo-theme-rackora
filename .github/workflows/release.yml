@@ -14,6 +14,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          # 发布只用 gh/API，不需要 git 推送；不把可写 token 留在 .git/config 给依赖安装脚本。
+          persist-credentials: false
 
       - name: Set up pnpm
         uses: pnpm/action-setup@v4
@@ -77,9 +80,10 @@ jobs:
             echo "::notice::Halo App Store sync skipped: configure the HALO_APP_ID variable and HALO_PAT secret after the first review is approved."
           fi
 
+      # 该 action 会拿到 HALO_PAT 与可写 token，固定到已审查的提交，升级时复核源码再改 SHA。
       - name: Sync release to Halo App Store
         if: steps.appstore.outputs.enabled == 'true'
-        uses: halo-sigs/reusable-workflows/app-store-release-action@v5
+        uses: halo-sigs/reusable-workflows/app-store-release-action@045a5dd72c61775ea923c0a3a58576f680143430 # v5.0.1
         with:
           github-token: ${{ github.token }}
           app-id: ${{ vars.HALO_APP_ID }}
