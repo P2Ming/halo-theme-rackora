@@ -184,16 +184,29 @@ assert.match(
   new RegExp("Current release: `v" + packageManifest.version.replaceAll(".", "\\.") + "`"),
   "README.en.md must identify the current release version",
 );
+const screenshotFiles = (await readdir(path.join(root, "docs", "screenshots"))).filter((name) =>
+  name.endsWith(".png"),
+);
+assert.ok(screenshotFiles.length >= 4, "docs/screenshots must keep the README preview images");
 for (const readmeName of ["README.md", "README.en.md"]) {
-  const screenshots = [
+  const assets = [
     ...(await read(readmeName)).matchAll(
-      /raw\.githubusercontent\.com\/everett7623\/halo-theme-rackora\/main\/(docs\/screenshots\/[\w.-]+\.png)/g,
+      /raw\.githubusercontent\.com\/everett7623\/halo-theme-rackora\/main\/([\w./-]+\.(?:png|svg))/g,
     ),
   ].map((match) => match[1]);
-  assert.ok(screenshots.length >= 4, `${readmeName} must preview the theme with screenshots`);
-  for (const screenshot of screenshots) {
-    await access(path.join(root, screenshot)).catch(() =>
-      assert.fail(`${readmeName} references a missing screenshot: ${screenshot}`),
+  assert.ok(
+    assets.includes("public/assets/images/rackora-mark.svg"),
+    `${readmeName} must open with the theme logo`,
+  );
+  for (const asset of assets) {
+    await access(path.join(root, asset)).catch(() =>
+      assert.fail(`${readmeName} references a missing file: ${asset}`),
+    );
+  }
+  for (const screenshot of screenshotFiles) {
+    assert.ok(
+      assets.includes(`docs/screenshots/${screenshot}`),
+      `${readmeName} must show docs/screenshots/${screenshot} or the file should be removed`,
     );
   }
 }
