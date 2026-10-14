@@ -12,6 +12,16 @@ Current release: `v0.9.5`
 - 问题反馈：[GitHub Issues](https://github.com/everett7623/halo-theme-rackora/issues)
 - 源码仓库：[halo-theme-rackora](https://github.com/everett7623/halo-theme-rackora)
 
+## 界面预览
+
+|                                                            首页（浅色）                                                            |                                                             首页（深色）                                                              |
+| :--------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------: |
+|       ![首页浅色模式](https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/home-light.png)       |         ![首页深色模式](https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/home-dark.png)         |
+|                                                             **归档页**                                                             |                                                              **分类页**                                                               |
+|           ![归档页](https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/archives.png)           |            ![分类页](https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/category.png)             |
+|                                                             **文章页**                                                             |                                                             **主题设置**                                                              |
+| ![文章页：目录、分享栏与版权声明](https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/post.png) | ![主题设置：外观分组](https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-appearance.png) |
+
 ## 适合什么站点
 
 - 独立出版、技术写作、产品文档和个人知识库。

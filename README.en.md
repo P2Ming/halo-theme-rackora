@@ -11,6 +11,16 @@ Current release: `v0.9.5`
 - Issues: [GitHub Issues](https://github.com/everett7623/halo-theme-rackora/issues)
 - Source: [halo-theme-rackora](https://github.com/everett7623/halo-theme-rackora)
 
+## Screenshots
+
+|                                                                            Home (light)                                                                             |                                                                     Home (dark)                                                                     |
+| :-----------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------: |
+|                  ![Home page in light mode](https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/home-light.png)                  |           ![Home page in dark mode](https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/home-dark.png)           |
+|                                                                            **Archives**                                                                             |                                                                    **Category**                                                                     |
+|                        ![Archives page](https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/archives.png)                        |                ![Category page](https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/category.png)                |
+|                                                                              **Post**                                                                               |                                                                 **Theme settings**                                                                  |
+| ![Post page with table of contents, share bar, and license notice](https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/post.png) | ![Theme settings: Appearance group](https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-appearance.png) |
+
 ## Who It Is For
 
 - Independent publishing, technical writing, product documentation, and personal knowledge bases.

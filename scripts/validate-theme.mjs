@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFile, readdir } from "node:fs/promises";
+import { access, readFile, readdir } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -183,6 +183,31 @@ assert.match(
   await read("README.en.md"),
   new RegExp("Current release: `v" + packageManifest.version.replaceAll(".", "\\.") + "`"),
   "README.en.md must identify the current release version",
+);
+for (const readmeName of ["README.md", "README.en.md"]) {
+  const screenshots = [
+    ...(await read(readmeName)).matchAll(
+      /raw\.githubusercontent\.com\/everett7623\/halo-theme-rackora\/main\/(docs\/screenshots\/[\w.-]+\.png)/g,
+    ),
+  ].map((match) => match[1]);
+  assert.ok(screenshots.length >= 4, `${readmeName} must preview the theme with screenshots`);
+  for (const screenshot of screenshots) {
+    await access(path.join(root, screenshot)).catch(() =>
+      assert.fail(`${readmeName} references a missing screenshot: ${screenshot}`),
+    );
+  }
+}
+const publicFiles = (
+  await readdir(path.join(root, "public"), { recursive: true, withFileTypes: true })
+)
+  .filter((entry) => entry.isFile())
+  .map((entry) =>
+    path.relative(path.join(root, "public"), path.join(entry.parentPath, entry.name)),
+  );
+assert.deepEqual(
+  publicFiles.map((file) => file.replaceAll("\\", "/")),
+  ["assets/images/rackora-mark.svg"],
+  "public/ is copied into every install package; keep screenshots and store assets in docs/ or dist/",
 );
 assert.match(layout, /<html\b[^>]*xmlns:th=/, "layout must declare the Thymeleaf namespace");
 assert.match(layout, /menuFinder\.getPrimary\(\)/, "layout must render the primary Halo menu");
