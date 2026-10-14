@@ -10,7 +10,7 @@ English | [简体中文](README.md)
 
 Rackora is a content-first theme for Halo 2.x. It is designed for independent blogs, knowledge bases, technical documentation, and other sites that need a calm, durable publishing surface. The theme provides responsive reading, light/dark modes, article navigation, syntax highlighting, and page-level SEO without adding a separate frontend runtime.
 
-Current release: `v0.9.6`
+Current release: `v0.9.7`
 
 - License: [GPL-3.0](LICENSE) (free theme, no in-app purchase)
 - Halo compatibility: `>= 2.20.0`
@@ -77,7 +77,7 @@ Keep Halo page static cache and automatic backup when those services are needed.
 
 The theme directory and `metadata.name` in `theme.yaml` must remain `theme-rackora`.
 
-The default interface language is English. To switch theme UI copy to Chinese, open **Theme Settings → Basic → Interface language** and choose Simplified Chinese. Halo site title, posts, and menus are left unchanged.
+The default interface language is Simplified Chinese, and the site language defaults to `zh-CN`. For English theme UI copy, open **Theme Settings → Basic → Interface language**, choose English, and set **Site language** to `en-US`. Halo site title, posts, and menus are left unchanged.
 
 ## Usage
 
@@ -209,7 +209,8 @@ These assets are bundled locally and are not loaded from a CDN; their full copyr
 
 - **New settings missing after upgrade:** Theme Management → Reload configuration, then refresh Console.
 - **Wrong header logo:** Upload it in the Appearance group, not the SEO organization logo field.
-- **Chinese UI copy still in English:** Set Basic → Interface language to Simplified Chinese.
+- **Chinese UI copy still in English:** Set Basic → Interface language to Simplified Chinese (sites upgraded from older versions keep their previous English setting).
+- **English site shows Chinese UI copy:** New installs default to Simplified Chinese; set Basic → Interface language to English and Site language to `en-US`.
 - **No search, comments, RSS, or friend links:** Install and enable the matching official plugin. The theme does not fail when a plugin is absent.
 - **Duplicate canonical or JSON-LD:** Disable Time Factor SEO or similar injectors, then clear page cache.
 - **Stale frontend styles:** Clear the browser cache, or refresh page static cache. For a development Halo instance, set `SPRING_THYMELEAF_CACHE=false`.

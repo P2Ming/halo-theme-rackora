@@ -11,8 +11,8 @@ spec:
           name: ui_language
           id: ui_language
           label: 主题界面语言
-          help: 只切换主题自带文案；文章、菜单和站点资料保持原内容。中文站点请同时把「网站语言」改为 zh-CN。
-          value: en
+          help: 只切换主题自带文案；文章、菜单和站点资料保持原内容。切换为 English 时，请同时把「网站语言」改为 en-US。
+          value: zh-CN
           options:
             - label: English
               value: en
@@ -23,7 +23,7 @@ spec:
           id: site_language
           label: 网站语言
           help: 用于 HTML lang 与结构化数据，应与正文语言一致：中文站点填 zh-CN，英文站点填 en-US。
-          value: en-US
+          value: zh-CN
           validation: required
         - $formkit: text
           name: site_region

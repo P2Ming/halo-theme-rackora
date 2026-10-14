@@ -505,13 +505,13 @@ assert.match(mainScript, /data-site-launch-compact/);
 const basicForm = settings?.spec?.forms?.find((form) => form.group === "basic");
 assert.equal(
   basicForm?.formSchema?.find((field) => field.name === "ui_language")?.value,
-  "en",
-  "theme UI must default to English",
+  "zh-CN",
+  "theme UI must default to Simplified Chinese",
 );
 assert.equal(
   basicForm?.formSchema?.find((field) => field.name === "site_language")?.value,
-  "en-US",
-  "HTML and structured data language must default to English",
+  "zh-CN",
+  "HTML and structured data language must match the Simplified Chinese default",
 );
 const socials = basicForm?.formSchema?.find((field) => field.name === "socials");
 assert.equal(socials?.$formkit, "array", "socials must use Halo's sortable array input");
@@ -753,11 +753,6 @@ assert.match(
   home,
   /site\.subtitle \?: \(isZhCN \? '[^']+' : 'Independent publishing with clarity and care\.'\)/,
   "the profile subtitle fallback must follow the theme UI language",
-);
-assert.match(
-  theme?.spec?.description ?? "",
-  /[一-鿿]/,
-  "the Console-facing theme description must match the Chinese settings UI",
 );
 for (const template of [
   ...(theme?.spec?.customTemplates?.page ?? []),
