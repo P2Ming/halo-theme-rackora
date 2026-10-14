@@ -532,7 +532,7 @@ img {
 .archive-heading {
   width: 100%;
   max-width: none;
-  margin: 0 0 44px;
+  margin: 0 0 38px;
 }
 
 .archive-heading h1,
@@ -560,7 +560,10 @@ img {
 .author-heading {
   width: 100%;
   max-width: none;
-  margin: 0 0 36px;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  margin: 0 0 40px;
 }
 
 .author-heading__count {
@@ -863,7 +866,6 @@ img {
   padding-bottom: 0;
 }
 
-.section-heading h1,
 .section-heading h2,
 .comments h2 {
   margin: 0;
@@ -1581,24 +1583,18 @@ img {
   background: var(--rack-accent-soft);
 }
 
-.article-content .product-table td[data-column="price"],
-.article-content .product-table td[data-column="价格"],
-.article-content .product-table td[data-column="售价"] {
+.article-content .product-table td[data-column="价格"] {
   color: var(--rack-signal);
   font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
   font-weight: 760;
   white-space: nowrap;
 }
 
-.article-content .product-table td[data-column="buy"],
-.article-content .product-table td[data-column="购买"],
-.article-content .product-table td[data-column="链接"] {
+.article-content .product-table td[data-column="购买"] {
   white-space: nowrap;
 }
 
-.article-content .product-table td[data-column="buy"] a,
-.article-content .product-table td[data-column="购买"] a,
-.article-content .product-table td[data-column="链接"] a {
+.article-content .product-table td[data-column="购买"] a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1612,9 +1608,7 @@ img {
   text-decoration: none;
 }
 
-.article-content .product-table td[data-column="buy"] a:hover,
-.article-content .product-table td[data-column="购买"] a:hover,
-.article-content .product-table td[data-column="链接"] a:hover {
+.article-content .product-table td[data-column="购买"] a:hover {
   background: var(--rack-accent-hover);
 }
 
@@ -2155,10 +2149,6 @@ img {
   border-top: 1px solid var(--rack-line);
 }
 
-.archive-heading {
-  margin-bottom: 38px;
-}
-
 .timeline {
   width: 100%;
   max-width: none;
@@ -2339,13 +2329,6 @@ a.timeline-entry__category:hover {
 .tag-cloud a:hover {
   color: var(--rack-accent);
   border-color: var(--rack-line-strong);
-}
-
-.author-heading {
-  display: flex;
-  align-items: center;
-  gap: 22px;
-  margin-bottom: 40px;
 }
 
 .author-heading img {
@@ -2789,10 +2772,6 @@ a.timeline-entry__category:hover {
 
   .home-heading__meta {
     display: grid;
-  }
-
-  .archive-heading {
-    margin-bottom: 38px;
   }
 
   .post-entry,

@@ -20,6 +20,8 @@ Current release: `v0.9.7`
 
 ## 界面预览
 
+### 前台页面
+
 |                                                                          首页（浅色）                                                                          |                                                                   首页（深色）                                                                    |
 | :------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------: |
 |       <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/home-light.png" alt="首页浅色模式" width="600" />       | <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/home-dark.png" alt="首页深色模式" width="600" /> |
@@ -29,6 +31,22 @@ Current release: `v0.9.7`
 |           <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/archives.png" alt="归档页" width="600" />           |      <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/about.png" alt="关于页" width="600" />      |
 |                                                                           **分类页**                                                                           |                                                                   **标签列表**                                                                    |
 |           <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/category.png" alt="分类页" width="600" />           |     <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/tags.png" alt="标签列表" width="600" />      |
+
+### 后台设置
+
+|                                                                               主题详情                                                                               |                                                                          基础                                                                          |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------: |
+| <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/console-theme-detail.png" alt="Console 中的主题详情" width="600" /> |   <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-basic.png" alt="基础设置" width="600" />   |
+|                                                                               **外观**                                                                               |                                                                       **侧边栏**                                                                       |
+|       <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-appearance.png" alt="外观设置" width="600" />        | <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-sidebar.png" alt="侧边栏设置" width="600" /> |
+|                                                                               **文章**                                                                               |                                                                        **插件**                                                                        |
+|          <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-post.png" alt="文章设置" width="600" />           |  <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-plugins.png" alt="插件设置" width="600" />  |
+|                                                                               **SEO**                                                                                |                                                                        **分析**                                                                        |
+|           <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-seo.png" alt="SEO 设置" width="600" />           | <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-analytics.png" alt="分析设置" width="600" /> |
+|                                                                               **广告**                                                                               |                                                                        **备案**                                                                        |
+|           <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-ads.png" alt="广告设置" width="600" />           |  <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-filing.png" alt="备案设置" width="600" />   |
+
+分析与广告分组默认关闭，截图为开启后显示的完整选项。
 
 ## 适合什么站点
 
@@ -120,25 +138,6 @@ SEO 分组中的“站点组织 Logo”只用于 Organization / WebSite 结构�
 | 备案   | ICP 与公网安备号及跳转地址                                             |
 
 主题设置中的旧 `content.*` / `stats.*` 配置在升级后仍会兼容读取。
-
-<details>
-<summary>查看主题详情与全部设置分组截图</summary>
-
-|                                                                               主题详情                                                                               |                                                                          基础                                                                          |
-| :------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------: |
-| <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/console-theme-detail.png" alt="Console 中的主题详情" width="600" /> |   <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-basic.png" alt="基础设置" width="600" />   |
-|                                                                               **外观**                                                                               |                                                                       **侧边栏**                                                                       |
-|       <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-appearance.png" alt="外观设置" width="600" />        | <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-sidebar.png" alt="侧边栏设置" width="600" /> |
-|                                                                               **文章**                                                                               |                                                                        **插件**                                                                        |
-|          <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-post.png" alt="文章设置" width="600" />           |  <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-plugins.png" alt="插件设置" width="600" />  |
-|                                                                               **SEO**                                                                                |                                                                        **分析**                                                                        |
-|           <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-seo.png" alt="SEO 设置" width="600" />           | <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-analytics.png" alt="分析设置" width="600" /> |
-|                                                                               **广告**                                                                               |                                                                        **备案**                                                                        |
-|           <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-ads.png" alt="广告设置" width="600" />           |  <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-filing.png" alt="备案设置" width="600" />   |
-
-分析与广告分组默认关闭，截图为开启后显示的完整选项。
-
-</details>
 
 ## 升级
 

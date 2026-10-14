@@ -19,6 +19,8 @@ Current release: `v0.9.7`
 
 ## Screenshots
 
+### Front end
+
 |                                                                                          Home (light)                                                                                           |                                                                         Home (dark)                                                                         |
 | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------: |
 |                  <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/home-light.png" alt="Home page in light mode" width="600" />                  | <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/home-dark.png" alt="Home page in dark mode" width="600" /> |
@@ -28,6 +30,22 @@ Current release: `v0.9.7`
 |                        <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/archives.png" alt="Archives page" width="600" />                        |         <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/about.png" alt="About page" width="600" />         |
 |                                                                                          **Category**                                                                                           |                                                                          **Tags**                                                                           |
 |                        <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/category.png" alt="Category page" width="600" />                        |          <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/tags.png" alt="Tag index" width="600" />          |
+
+### Admin settings
+
+|                                                                                   Theme details                                                                                   |                                                                              Basic                                                                               |
+| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/console-theme-detail.png" alt="Theme details in the Halo Console" width="600" /> |     <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-basic.png" alt="Basic settings" width="600" />     |
+|                                                                                  **Appearance**                                                                                   |                                                                           **Sidebar**                                                                            |
+|        <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-appearance.png" alt="Appearance settings" width="600" />         |   <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-sidebar.png" alt="Sidebar settings" width="600" />   |
+|                                                                                     **Post**                                                                                      |                                                                           **Plugins**                                                                            |
+|              <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-post.png" alt="Post settings" width="600" />               |   <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-plugins.png" alt="Plugin settings" width="600" />    |
+|                                                                                      **SEO**                                                                                      |                                                                          **Analytics**                                                                           |
+|               <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-seo.png" alt="SEO settings" width="600" />                | <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-analytics.png" alt="Analytics settings" width="600" /> |
+|                                                                                      **Ads**                                                                                      |                                                                            **Filing**                                                                            |
+|                <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-ads.png" alt="Ad settings" width="600" />                |    <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-filing.png" alt="Filing settings" width="600" />    |
+
+Analytics and ads are off by default; these screenshots show both groups after enabling them to reveal every option.
 
 ## Who It Is For
 
@@ -119,25 +137,6 @@ The settings page is organized into nine groups, each with safe defaults:
 | Filing       | ICP and public-security filing numbers and URLs                                                  |
 
 Legacy `content.*` and `stats.*` configuration keys remain readable after upgrades.
-
-<details>
-<summary>View theme details and every settings group</summary>
-
-|                                                                                   Theme details                                                                                   |                                                                              Basic                                                                               |
-| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/console-theme-detail.png" alt="Theme details in the Halo Console" width="600" /> |     <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-basic.png" alt="Basic settings" width="600" />     |
-|                                                                                  **Appearance**                                                                                   |                                                                           **Sidebar**                                                                            |
-|        <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-appearance.png" alt="Appearance settings" width="600" />         |   <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-sidebar.png" alt="Sidebar settings" width="600" />   |
-|                                                                                     **Post**                                                                                      |                                                                           **Plugins**                                                                            |
-|              <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-post.png" alt="Post settings" width="600" />               |   <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-plugins.png" alt="Plugin settings" width="600" />    |
-|                                                                                      **SEO**                                                                                      |                                                                          **Analytics**                                                                           |
-|               <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-seo.png" alt="SEO settings" width="600" />                | <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-analytics.png" alt="Analytics settings" width="600" /> |
-|                                                                                      **Ads**                                                                                      |                                                                            **Filing**                                                                            |
-|                <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-ads.png" alt="Ad settings" width="600" />                |    <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-filing.png" alt="Filing settings" width="600" />    |
-
-Analytics and ads are off by default; these screenshots show both groups after enabling them to reveal every option.
-
-</details>
 
 ## Upgrade
 
