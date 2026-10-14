@@ -10,7 +10,7 @@ English | [简体中文](README.md)
 
 Rackora is a content-first theme for Halo 2.x. It is designed for independent blogs, knowledge bases, technical documentation, and other sites that need a calm, durable publishing surface. The theme provides responsive reading, light/dark modes, article navigation, syntax highlighting, and page-level SEO without adding a separate frontend runtime.
 
-Current release: `v0.9.5`
+Current release: `v0.9.6`
 
 - License: [GPL-3.0](LICENSE) (free theme, no in-app purchase)
 - Halo compatibility: `>= 2.20.0`
@@ -84,8 +84,8 @@ The default interface language is English. To switch theme UI copy to Chinese, o
 1. Configure the primary menu under Halo Appearance → Menus. Rackora reads the primary menu and supports nested items.
 2. Choose a logo mode and upload the matching image under **Theme Settings → Appearance**. See [Logo Setup](#logo-setup).
 3. Fill in Basic, Sidebar, Post, SEO, and Filing groups as needed. Title, subtitle, and the global description come from Halo site settings; do not duplicate them in theme settings.
-4. For an about page, create a single page and select the **About** template. It shows the profile card, social links, and selected logo.
-5. For long technical writing, edit a post and select the **Documentation** template. It keeps a persistent table of contents.
+4. For an about page, create a single page and select the **关于页（About）** template. It shows the profile card, social links, and selected logo.
+5. For long technical writing, edit a post and select the **文档（Documentation）** template. It keeps a persistent table of contents.
 6. The friend-links page requires the official Links plugin; visit `/links` after enabling it.
 7. Comments and search come from the matching official plugins. The theme only shows those entries when the plugin is available.
 

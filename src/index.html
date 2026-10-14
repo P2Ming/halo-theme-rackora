@@ -51,7 +51,7 @@
   <figure class="home-banner" th:if="${not #strings.isEmpty(theme.config.appearance.banner_image)}">
     <img
       th:src="${theme.config.appearance.banner_image}"
-      th:alt="|${site.title} banner|"
+      th:alt="${theme.config.basic?.ui_language == 'zh-CN' ? site.title + ' 横幅' : site.title + ' banner'}"
       width="1600"
       height="480"
       decoding="async"
@@ -74,7 +74,10 @@
       <h1 id="home-title" th:text="${site.title}">站点标题</h1>
       <p th:if="${not #strings.isEmpty(site.subtitle)}" th:text="${site.subtitle}"></p>
       <div class="home-heading__meta">
-        <span th:text="${isZhCN ? posts.total + ' 篇内容' : posts.total + ' posts'}">0 posts</span>
+        <span
+          th:text="${isZhCN ? posts.total + ' 篇内容' : posts.total + (posts.total == 1 ? ' post' : ' posts')}"
+          >0 posts</span
+        >
         <span th:text="${homeTaglineText}">Written for clarity and longevity</span>
       </div>
     </section>
@@ -132,7 +135,9 @@
           />
           <div class="profile-panel__copy" th:unless="${useWideLogo}">
             <h2 th:text="${site.title}">Rackora</h2>
-            <p th:text="${site.subtitle ?: 'Independent publishing with clarity and care.'}"></p>
+            <p
+              th:text="${site.subtitle ?: (isZhCN ? '清晰而用心的独立出版。' : 'Independent publishing with clarity and care.')}"
+            ></p>
           </div>
           <nav
             class="profile-socials"
@@ -195,7 +200,7 @@
             <ul>
               <li th:each="category : ${homeCategories}">
                 <a th:href="@{${category.status.permalink}}">
-                  <span th:text="${category.spec.displayName}">栏目</span>
+                  <span th:text="${category.spec.displayName}">分类</span>
                   <small th:text="${category.postCount}">0</small>
                 </a>
               </li>

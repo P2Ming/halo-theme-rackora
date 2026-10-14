@@ -22,7 +22,7 @@
       Archives
     </h1>
     <p
-      th:text="${theme.config.basic.ui_language == 'zh-CN' ? '共 ' + archives.total + ' 篇公开内容，按发布时间整理。' : archives.total + ' public posts, organized by publish date.'}"
+      th:text="${theme.config.basic.ui_language == 'zh-CN' ? '共 ' + archives.total + ' 篇公开内容，按发布时间整理。' : archives.total + (archives.total == 1 ? ' public post' : ' public posts') + ', organized by publish date.'}"
     >
       Public posts organized by publish date.
     </p>

@@ -35,7 +35,7 @@
     ></p>
     <p
       th:if="${#strings.isEmpty(#annotations.get(tag, 'rackora_description'))}"
-      th:text="${theme.config.basic.ui_language == 'zh-CN' ? posts.total + ' 篇相关内容' : posts.total + ' related posts'}"
+      th:text="${theme.config.basic.ui_language == 'zh-CN' ? posts.total + ' 篇相关内容' : posts.total + (posts.total == 1 ? ' related post' : ' related posts')}"
     >
       Related posts
     </p>

@@ -20,7 +20,7 @@
     <include
       src="archive-breadcrumbs.html"
       crumbParentHref="site.routes.categoriesUri"
-      crumbParentLabel="theme.config.basic.ui_language == 'zh-CN' ? '全部栏目' : 'Categories'"
+      crumbParentLabel="theme.config.basic.ui_language == 'zh-CN' ? '全部分类' : 'Categories'"
       crumbCurrent="category.spec.displayName"
     ></include>
     <h1 th:text="${category.spec.displayName}">Category</h1>
@@ -30,7 +30,7 @@
     ></p>
     <p
       th:if="${#strings.isEmpty(category.spec.description)}"
-      th:text="${theme.config.basic.ui_language == 'zh-CN' ? posts.total + ' 篇相关内容' : posts.total + ' related posts'}"
+      th:text="${theme.config.basic.ui_language == 'zh-CN' ? posts.total + ' 篇相关内容' : posts.total + (posts.total == 1 ? ' related post' : ' related posts')}"
     >
       Related posts
     </p>
@@ -56,12 +56,12 @@
   </ul>
   <div class="empty-state" th:if="${#lists.isEmpty(posts.items)}">
     <h2
-      th:text="${theme.config.basic.ui_language == 'zh-CN' ? '这个栏目暂时没有文章' : 'No posts in this category'}"
+      th:text="${theme.config.basic.ui_language == 'zh-CN' ? '这个分类暂时没有文章' : 'No posts in this category'}"
     >
       No posts in this category
     </h2>
     <p
-      th:text="${theme.config.basic.ui_language == 'zh-CN' ? '可以先浏览其他栏目或返回首页。' : 'Browse another category or return home.'}"
+      th:text="${theme.config.basic.ui_language == 'zh-CN' ? '可以先浏览其他分类或返回首页。' : 'Browse another category or return home.'}"
     >
       Browse another category or return home.
     </p>

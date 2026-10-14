@@ -7,7 +7,7 @@ spec:
   author:
     name: everettlabs
     website: https://everettlabs.dev/
-  description: A minimal, content-first Halo theme for independent publishing, knowledge bases, and technical writing.
+  description: 内容优先的 Halo 主题，适合独立出版、知识库和技术写作。
   logo: /themes/theme-rackora/assets/images/rackora-mark.svg
   homepage: https://github.com/everett7623/halo-theme-rackora#readme
   repo: https://github.com/everett7623/halo-theme-rackora
@@ -16,14 +16,14 @@ spec:
   configMapName: "theme-rackora-configMap"
   customTemplates:
     page:
-      - name: About
-        description: Profile-focused about page with social links
+      - name: 关于页（About）
+        description: 带 Logo、站点简介与社交链接的关于页
         file: page_about.html
     post:
-      - name: Documentation
-        description: Documentation layout with persistent table of contents
+      - name: 文档（Documentation）
+        description: 目录常驻侧栏的文档式长文布局
         file: post_docs.html
-  version: 0.9.5
+  version: 0.9.6
   requires: ">=2.20.0"
   license:
     - name: "GPL-3.0"

@@ -207,7 +207,7 @@
             <li>
               <a
                 th:href="@{${site.routes.categoriesUri}}"
-                th:text="${theme.config.basic.ui_language == 'zh-CN' ? '栏目' : 'Categories'}"
+                th:text="${theme.config.basic.ui_language == 'zh-CN' ? '分类' : 'Categories'}"
                 >Categories</a
               >
             </li>
@@ -275,7 +275,7 @@
             >
             <a
               th:href="@{${site.routes.categoriesUri}}"
-              th:text="${theme.config.basic.ui_language == 'zh-CN' ? '栏目' : 'Categories'}"
+              th:text="${theme.config.basic.ui_language == 'zh-CN' ? '分类' : 'Categories'}"
               >Categories</a
             >
             <a
@@ -297,7 +297,10 @@
           </th:block>
         </nav>
         <small>
-          <span>Powered by Halo</span>
+          <span
+            th:text="${theme.config.basic.ui_language == 'zh-CN' ? '由 Halo 驱动' : 'Powered by Halo'}"
+            >Powered by Halo</span
+          >
           <th:block
             th:if="${theme.config.basic.show_theme_credit == null or theme.config.basic.show_theme_credit}"
           >

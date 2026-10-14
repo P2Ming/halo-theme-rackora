@@ -247,7 +247,7 @@ function initSiteUptime(): void {
         : String(days)
       : isChineseUi()
         ? `运行 ${days} 天`
-        : `Online for ${days} days`;
+        : `Online for ${days} ${days === 1 ? "day" : "days"}`;
   }
 }
 

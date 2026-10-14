@@ -1,14 +1,14 @@
 <include src="layout.html">
   <template name="head">
     <title
-      th:text="|${theme.config.basic.ui_language == 'zh-CN' ? '全部栏目' : 'Categories'} - ${site.title}|"
+      th:text="|${theme.config.basic.ui_language == 'zh-CN' ? '全部分类' : 'Categories'} - ${site.title}|"
     >
       Categories
     </title>
     <include
       src="seo-head.html"
       path="site.routes.categoriesUri"
-      title="(theme.config.basic.ui_language == 'zh-CN' ? '全部栏目' : 'Categories') + ' - ' + site.title"
+      title="(theme.config.basic.ui_language == 'zh-CN' ? '全部分类' : 'Categories') + ' - ' + site.title"
       description="site.seo.description ?: site.subtitle"
       image="site.logo"
       type="website"
@@ -16,7 +16,7 @@
   </template>
 
   <header class="archive-heading">
-    <h1 th:text="${theme.config.basic.ui_language == 'zh-CN' ? '全部栏目' : 'Categories'}">
+    <h1 th:text="${theme.config.basic.ui_language == 'zh-CN' ? '全部分类' : 'Categories'}">
       Categories
     </h1>
     <p
@@ -32,7 +32,7 @@
         <strong th:text="${category.spec.displayName}">Category</strong>
         <span class="taxonomy-grid__count" th:text="${category.postCount}">0</span>
         <span
-          th:text="${category.spec.description ?: (theme.config.basic.ui_language == 'zh-CN' ? '查看该栏目下的全部内容' : 'View every post in this category')}"
+          th:text="${category.spec.description ?: (theme.config.basic.ui_language == 'zh-CN' ? '查看该分类下的全部内容' : 'View every post in this category')}"
         ></span>
       </a>
       <ul class="taxonomy-children" th:if="${not #lists.isEmpty(category.children)}">
@@ -44,12 +44,12 @@
   </ul>
   <div class="empty-state" th:if="${#lists.isEmpty(categories)}">
     <h2
-      th:text="${theme.config.basic.ui_language == 'zh-CN' ? '尚未创建栏目' : 'No categories yet'}"
+      th:text="${theme.config.basic.ui_language == 'zh-CN' ? '尚未创建分类' : 'No categories yet'}"
     >
       No categories yet
     </h2>
     <p
-      th:text="${theme.config.basic.ui_language == 'zh-CN' ? '在 Halo 后台建立栏目后，它们会显示在这里。' : 'Categories created in Halo will appear here.'}"
+      th:text="${theme.config.basic.ui_language == 'zh-CN' ? '在 Halo 后台建立分类后，它们会显示在这里。' : 'Categories created in Halo will appear here.'}"
     >
       Categories created in Halo will appear here.
     </p>

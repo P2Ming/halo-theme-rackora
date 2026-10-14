@@ -730,6 +730,46 @@ assert.doesNotMatch(
   "decorative color rails must stay removed",
 );
 assert.doesNotMatch(
+  [sourceMarkup.join("\n"), settingsSource, annotationSource, themeSource].join("\n"),
+  /栏目/,
+  "Chinese copy must call categories 分类, matching the Halo Console",
+);
+assert.doesNotMatch(
+  sourceMarkup.join("\n"),
+  /\+ ' (?:posts|views|comments|public posts|related posts)'/,
+  "English counts must switch to the singular form for 1",
+);
+assert.doesNotMatch(
+  mainScript,
+  /\$\{days\} days`/,
+  "English day counts must switch to the singular",
+);
+assert.match(
+  layout,
+  /'由 Halo 驱动' : 'Powered by Halo'/,
+  "the footer credit must follow the theme UI language",
+);
+assert.match(
+  home,
+  /site\.subtitle \?: \(isZhCN \? '[^']+' : 'Independent publishing with clarity and care\.'\)/,
+  "the profile subtitle fallback must follow the theme UI language",
+);
+assert.match(
+  theme?.spec?.description ?? "",
+  /[一-鿿]/,
+  "the Console-facing theme description must match the Chinese settings UI",
+);
+for (const template of [
+  ...(theme?.spec?.customTemplates?.page ?? []),
+  ...(theme?.spec?.customTemplates?.post ?? []),
+]) {
+  assert.match(
+    `${template.name} ${template.description}`,
+    /[一-鿿]/,
+    `custom template ${template.file} must use Chinese labels in the Console`,
+  );
+}
+assert.doesNotMatch(
   sourceMarkup.join("\n"),
   /post\.tags[^\n]*(?:pillar|hub)|(?:pillar|hub)[^\n]*post\.tags/i,
   "the theme must not infer Pillar or Hub roles from tags",

@@ -106,5 +106,5 @@ spec:
     - $formkit: postSelect
       name: rackora_featured_post
       label: 精选文章
-      help: 用于栏目页的“精选内容”入口，留空即不显示。
+      help: 用于分类页的“精选内容”入口，留空即不显示。
       value: ""

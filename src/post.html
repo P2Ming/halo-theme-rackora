@@ -110,7 +110,7 @@
             itemtype="https://schema.org/ListItem"
           >
             <a itemprop="item" th:href="@{${post.categories[0].status.permalink}}">
-              <span itemprop="name" th:text="${post.categories[0].spec.displayName}">栏目</span>
+              <span itemprop="name" th:text="${post.categories[0].spec.displayName}">分类</span>
             </a>
             <meta itemprop="position" content="2" />
           </span>
@@ -158,7 +158,7 @@
             >Calculating reading time</span
           >
           <span
-            th:text="${theme.config.basic.ui_language == 'zh-CN' ? post.stats.visit + ' 阅读' : post.stats.visit + ' views'}"
+            th:text="${theme.config.basic.ui_language == 'zh-CN' ? post.stats.visit + ' 阅读' : post.stats.visit + (post.stats.visit == 1 ? ' view' : ' views')}"
             >0 views</span
           >
         </div>
