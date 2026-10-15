@@ -18,6 +18,8 @@ Current release: `v0.9.7`
 - 问题反馈：[GitHub Issues](https://github.com/everett7623/halo-theme-rackora/issues)
 - 源码仓库：[halo-theme-rackora](https://github.com/everett7623/halo-theme-rackora)
 
+![Rackora 应用市场封面](docs/marketplace-cover.png)
+
 ## 界面预览
 
 ### 前台页面
