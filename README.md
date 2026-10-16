@@ -17,6 +17,7 @@ Current release: `v0.9.8`
 - 兼容 Halo：`>= 2.20.0`
 - 问题反馈：[GitHub Issues](https://github.com/everett7623/halo-theme-rackora/issues)
 - 源码仓库：[halo-theme-rackora](https://github.com/everett7623/halo-theme-rackora)
+- 在线预览：[1vps.top](https://1vps.top/)
 
 ![Rackora 应用市场封面](https://raw.githubusercontent.com/everett7623/halo-theme-rackora/v0.9.8/docs/marketplace-cover.png)
 
