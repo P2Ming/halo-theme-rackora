@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/public/assets/images/rackora-mark.svg" alt="Rackora" width="96" height="96" />
+<img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/v0.9.8/public/assets/images/rackora-mark.svg" alt="Rackora" width="96" height="96" />
 
 # Rackora
 
@@ -10,7 +10,7 @@ English | [简体中文](README.md)
 
 Rackora is a content-first theme for Halo 2.x. It is designed for independent blogs, knowledge bases, technical documentation, and other sites that need a calm, durable publishing surface. The theme provides responsive reading, light/dark modes, article navigation, syntax highlighting, and page-level SEO without adding a separate frontend runtime.
 
-Current release: `v0.9.7`
+Current release: `v0.9.8`
 
 - License: [GPL-3.0](LICENSE) (free theme, no in-app purchase)
 - Halo compatibility: `>= 2.20.0`
@@ -21,29 +21,29 @@ Current release: `v0.9.7`
 
 ### Front end
 
-|                                                                                          Home (light)                                                                                           |                                                                         Home (dark)                                                                         |
-| :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------------------------------------------: |
-|                  <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/home-light.png" alt="Home page in light mode" width="600" />                  | <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/home-dark.png" alt="Home page in dark mode" width="600" /> |
-|                                                                                            **Post**                                                                                             |                                                                         **Mobile**                                                                          |
-| <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/post.png" alt="Post page with table of contents, share bar, and license notice" width="600" /> | <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/home-mobile.png" alt="Home page on mobile" width="240" />  |
-|                                                                                          **Archives**                                                                                           |                                                                          **About**                                                                          |
-|                        <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/archives.png" alt="Archives page" width="600" />                        |         <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/about.png" alt="About page" width="600" />         |
-|                                                                                          **Category**                                                                                           |                                                                          **Tags**                                                                           |
-|                        <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/category.png" alt="Category page" width="600" />                        |          <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/tags.png" alt="Tag index" width="600" />          |
+|                                                                                           Home (light)                                                                                            |                                                                          Home (dark)                                                                          |
+| :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------: |
+|                  <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/v0.9.8/docs/screenshots/home-light.png" alt="Home page in light mode" width="600" />                  | <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/v0.9.8/docs/screenshots/home-dark.png" alt="Home page in dark mode" width="600" /> |
+|                                                                                             **Post**                                                                                              |                                                                          **Mobile**                                                                           |
+| <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/v0.9.8/docs/screenshots/post.png" alt="Post page with table of contents, share bar, and license notice" width="600" /> | <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/v0.9.8/docs/screenshots/home-mobile.png" alt="Home page on mobile" width="240" />  |
+|                                                                                           **Archives**                                                                                            |                                                                           **About**                                                                           |
+|                        <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/v0.9.8/docs/screenshots/archives.png" alt="Archives page" width="600" />                        |         <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/v0.9.8/docs/screenshots/about.png" alt="About page" width="600" />         |
+|                                                                                           **Category**                                                                                            |                                                                           **Tags**                                                                            |
+|                        <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/v0.9.8/docs/screenshots/category.png" alt="Category page" width="600" />                        |          <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/v0.9.8/docs/screenshots/tags.png" alt="Tag index" width="600" />          |
 
 ### Admin settings
 
-|                                                                                   Theme details                                                                                   |                                                                              Basic                                                                               |
-| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :--------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/console-theme-detail.png" alt="Theme details in the Halo Console" width="600" /> |     <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-basic.png" alt="Basic settings" width="600" />     |
-|                                                                                  **Appearance**                                                                                   |                                                                           **Sidebar**                                                                            |
-|        <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-appearance.png" alt="Appearance settings" width="600" />         |   <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-sidebar.png" alt="Sidebar settings" width="600" />   |
-|                                                                                     **Post**                                                                                      |                                                                           **Plugins**                                                                            |
-|              <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-post.png" alt="Post settings" width="600" />               |   <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-plugins.png" alt="Plugin settings" width="600" />    |
-|                                                                                      **SEO**                                                                                      |                                                                          **Analytics**                                                                           |
-|               <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-seo.png" alt="SEO settings" width="600" />                | <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-analytics.png" alt="Analytics settings" width="600" /> |
-|                                                                                      **Ads**                                                                                      |                                                                            **Filing**                                                                            |
-|                <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-ads.png" alt="Ad settings" width="600" />                |    <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-filing.png" alt="Filing settings" width="600" />    |
+|                                                                                    Theme details                                                                                    |                                                                               Basic                                                                                |
+| :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/v0.9.8/docs/screenshots/console-theme-detail.png" alt="Theme details in the Halo Console" width="600" /> |     <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/v0.9.8/docs/screenshots/settings-basic.png" alt="Basic settings" width="600" />     |
+|                                                                                   **Appearance**                                                                                    |                                                                            **Sidebar**                                                                             |
+|        <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/v0.9.8/docs/screenshots/settings-appearance.png" alt="Appearance settings" width="600" />         |   <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/v0.9.8/docs/screenshots/settings-sidebar.png" alt="Sidebar settings" width="600" />   |
+|                                                                                      **Post**                                                                                       |                                                                            **Plugins**                                                                             |
+|              <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/v0.9.8/docs/screenshots/settings-post.png" alt="Post settings" width="600" />               |   <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/v0.9.8/docs/screenshots/settings-plugins.png" alt="Plugin settings" width="600" />    |
+|                                                                                       **SEO**                                                                                       |                                                                           **Analytics**                                                                            |
+|               <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/v0.9.8/docs/screenshots/settings-seo.png" alt="SEO settings" width="600" />                | <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/v0.9.8/docs/screenshots/settings-analytics.png" alt="Analytics settings" width="600" /> |
+|                                                                                       **Ads**                                                                                       |                                                                             **Filing**                                                                             |
+|                <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/v0.9.8/docs/screenshots/settings-ads.png" alt="Ad settings" width="600" />                |    <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/v0.9.8/docs/screenshots/settings-filing.png" alt="Filing settings" width="600" />    |
 
 Analytics and ads are off by default; these screenshots show both groups after enabling them to reveal every option.
 
@@ -61,7 +61,7 @@ Rackora reimplements an information hierarchy inspired by [Fuwari](https://githu
 - Eleven standard Halo routes: home, post, page, archive, tag, category, author, links, and 404 templates, plus About and Documentation custom templates.
 - Responsive navigation with nested menus, back-to-top control, reduced-motion support, and light, dark, and print styles.
 - Author information, reading progress, reading time, table of contents, heading anchors, copy-link action, related posts, series, and adjacent-post navigation.
-- Highlight.js syntax highlighting with on-demand language bundles, code-copy controls, responsive tables, and image lightbox.
+- Highlight.js syntax highlighting for 16 bundled languages (Bash, CSS, Dockerfile, Go, INI, Java, JavaScript, JSON, Nginx, Python, Rust, SCSS, SQL, TypeScript, HTML/XML, and YAML; other languages stay plain text), code-copy controls, responsive tables, and image lightbox.
 - X, Facebook, LinkedIn, Reddit, Telegram, WhatsApp, Weibo, email, and copy-link sharing, each configurable in the theme settings.
 - Halo comment, search, and footer extension points, with official RSS and Links plugin integration.
 - One page H1, self-referencing canonical URLs, Open Graph, Twitter Cards, breadcrumbs, and WebSite / Organization / BlogPosting / TechArticle JSON-LD.
@@ -174,9 +174,16 @@ Primary keywords are editorial review data only; the theme does not emit ineffec
 
 ## Privacy, Analytics, and External Services
 
-By default the theme does **not** load third-party analytics, ads, or remote fonts. Fonts, icons, and syntax highlighting required for reading are bundled in the package.
+### What the Theme Itself Does
 
-External services are requested only after a site administrator opts in:
+- The theme sets no cookies, does not collect, upload, or sell visitor information, site content, comments, or access logs, and has no analytics endpoint of its own.
+- Fonts, icons, and syntax highlighting are bundled with the theme and served from the site's own domain. A default installation requests no third-party domains.
+- When a visitor switches between light and dark mode, the choice is stored as `rackora-color-scheme` (`light` or `dark`) in the browser's `localStorage`. It stays on that device and is never sent to a server; clearing the site's browser data removes it.
+- Copy link and copy code write to the local clipboard only when the visitor clicks them.
+- Share buttons are plain links. No social platform is contacted on page load; the visitor is taken to the chosen platform only after clicking.
+- Post view counts and homepage site statistics are recorded by Halo itself, and comments, search, and RSS are handled by Halo or the matching plugins. The theme only reads and displays them.
+
+### External Services That Require Opt-In
 
 | Capability             | Settings group | Destination                                | Default |
 | ---------------------- | -------------- | ------------------------------------------ | ------- |
@@ -187,7 +194,36 @@ External services are requested only after a site administrator opts in:
 | Theme ad slots         | Ads            | Linked only when a destination URL is set  | Off     |
 | Social share buttons   | Post           | Navigate to the selected platform on click | On      |
 
-The theme does not collect, upload, or sell site content, user accounts, comments, or access logs. Analytics and ads are configured by the site owner, who remains responsible for their privacy policy. Turning off “Enable third-party analytics” or “Enable theme ads” immediately stops the matching scripts and slots.
+### Third-Party Analytics Data Handling
+
+After “Enable third-party analytics” is turned on and a service ID is entered, the visitor's browser loads that service's script directly and sends visit data to the provider. The data does not pass through the theme and is not stored in Halo; the theme can neither view nor delete it. Data categories, retention, and deletion are decided by each provider. The summary below follows the providers' public documentation; their latest terms prevail.
+
+**Google Analytics 4** (script: `www.googletagmanager.com/gtag/js`)
+
+- Data categories: page URL and title, referrer, device, browser, operating system, screen and language, approximate location derived from the IP address, and events such as page views, scrolls, and outbound clicks (depending on the Enhanced measurement settings in GA). Google states that Google Analytics does not log or store IP addresses.
+- Browser storage: first-party cookies such as `_ga` and `_ga_<ID>` that distinguish visitors and sessions.
+- Retention and deletion: data is stored on Google's servers. Retention for user-level and event-level data is set under Data retention in GA (2 or 14 months for standard properties), expired data is deleted automatically, and standard aggregated reports are not affected. Data for an individual visitor can be deleted through User explorer or the User Deletion API, or the whole property can be deleted.
+- Policies: [Google Privacy Policy](https://policies.google.com/privacy) · [Safeguarding your data](https://support.google.com/analytics/answer/6004245) · [Data retention](https://support.google.com/analytics/answer/7667196)
+
+**Microsoft Clarity** (script: `www.clarity.ms/tag/<project ID>`)
+
+- Data categories: interaction events such as clicks, scrolls, mouse movement, and window resizing; page structure and content for session playback and heatmaps (text in input fields is always masked); page performance and error information; device and browser information; and location derived from the IP address.
+- Browser storage: cookies such as `_clck` and `_clsk`; see Clarity's cookie documentation for the full list.
+- Retention and deletion: data is stored in Microsoft Azure. Site owners can access data for up to 30 days after recording, and favorite or randomly sampled recordings are kept for up to 9 months. Clarity cannot delete data for an individual visitor or recording; only deleting the whole project removes data, and a deleted project cannot be recovered.
+- Policies: [Microsoft Privacy Statement](https://privacy.microsoft.com/privacystatement) · [Clarity FAQ](https://learn.microsoft.com/clarity/faq) · [Data collection](https://learn.microsoft.com/clarity/setup-and-installation/clarity-data) · [Cookies](https://learn.microsoft.com/clarity/setup-and-installation/clarity-cookies)
+
+**Baidu Analytics** (script: `hm.baidu.com/hm.js?<site ID>`)
+
+- Data categories: visited pages and referrers, visit times, and log information such as IP address, browser type and language, operating system, and device information.
+- Browser storage: cookies such as `HMACCOUNT` (visitor ID), `Hm_lvt_<site ID>` (previous visit times, 1 year), and `Hm_lpvt_<site ID>` (current visit time, session).
+- Retention and deletion: the Baidu Analytics privacy policy states that personal information is stored within the People's Republic of China and kept while the service is in use; its terms of service state that site owners may not require Baidu Analytics to delete collected data. Visitors can delete browser cookies or submit requests through the contact details in the privacy policy.
+- Policies (Chinese): [Privacy policy](https://tongji.baidu.com/web/help/article?id=330&type=0) · [Terms of service](https://tongji.baidu.com/holmes/Analytics/%E9%9A%90%E7%A7%81%E5%90%88%E8%A7%84%E6%8C%87%E5%8D%97/%E7%99%BE%E5%BA%A6%E7%BB%9F%E8%AE%A1%E6%9C%8D%E5%8A%A1%E6%9D%A1%E6%AC%BE) · [Cookie list](https://tongji.baidu.com/holmes/Analytics/%E9%9A%90%E7%A7%81%E5%90%88%E8%A7%84%E6%8C%87%E5%8D%97/%E7%99%BE%E5%BA%A6%E7%BB%9F%E8%AE%A1%E7%9B%B8%E5%85%B3Cookie%E5%88%97%E8%A1%A8)
+
+### Turning It Off and Informing Visitors
+
+- After “Enable third-party analytics” is turned off or a service ID is cleared, the theme stops rendering that script immediately (clear the page cache first when static page caching is enabled) and no new data is collected. Data already sent to a provider is not deleted; handle it with that provider as described above.
+- The theme does not include a cookie consent banner. Before enabling analytics, list the services and how they process data in your site's privacy policy. For visitors in regions that require prior consent, such as the EU and the UK, add a consent management solution yourself.
+- Theme ad slots display only the text, images, and links an administrator enters; no third-party ad scripts are loaded.
 
 ## Third-Party Assets and Licenses
 

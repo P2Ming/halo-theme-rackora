@@ -37,12 +37,11 @@
   </header>
 
   <th:block th:with="featuredPostName = ${#annotations.get(category, 'rackora_featured_post')}">
-    <th:block th:if="${not #strings.isEmpty(featuredPostName)}">
-      <aside
-        class="featured-entry"
-        th:with="featuredPost = ${postFinder.getByName(featuredPostName)}"
-        th:if="${featuredPost != null}"
-      >
+    <th:block
+      th:if="${not #strings.isEmpty(featuredPostName)}"
+      th:with="featuredPost = ${postFinder.getByName(featuredPostName)}"
+    >
+      <aside class="featured-entry" th:if="${featuredPost != null}">
         <small th:text="${theme.config.basic.ui_language == 'zh-CN' ? '精选内容' : 'Featured'}"
           >Featured</small
         >

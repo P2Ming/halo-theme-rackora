@@ -2,6 +2,10 @@ apiVersion: theme.halo.run/v1alpha1
 kind: Theme
 metadata:
   name: theme-rackora
+  annotations:
+    # 关联 Halo 应用市场条目，Console 可据此识别已安装的主题并提示更新
+    # https://www.halo.run/store/apps/app-bflwdcgw
+    "store.halo.run/app-id": "app-bflwdcgw"
 spec:
   displayName: Rackora
   author:
@@ -23,7 +27,7 @@ spec:
       - name: 文档（Documentation）
         description: 目录常驻侧栏的文档式长文布局
         file: post_docs.html
-  version: 0.9.7
+  version: 0.9.8
   requires: ">=2.20.0"
   license:
     - name: "GPL-3.0"

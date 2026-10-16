@@ -102,7 +102,7 @@ const footer = `
 
 function page(title, body, scripts = "", logoMode = "square") {
   return `<!doctype html>
-<html lang="en-US" data-color-scheme="light" data-ui-language="en" class="color-scheme-light">
+<html lang="en-US" data-color-scheme="light" data-ui-language="en" class="color-scheme-light" style="--rack-accent-user:#08775b">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -112,7 +112,7 @@ function page(title, body, scripts = "", logoMode = "square") {
     <script type="module" src="/assets/${mainName}?v=${version}"></script>
     ${scripts}
   </head>
-  <body style="--rack-accent:#08775b">
+  <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
     ${header(logoMode)}
     <main id="main-content" class="site-main"><div class="shell">${body}</div></main>
@@ -213,6 +213,7 @@ const article = `
             <button class="share-bar__button" type="button" data-share-link data-share-url="${previewShareUrl}" aria-label="Copy post link" title="Copy post link"><i data-lucide="copy" aria-hidden="true"></i></button>
           </nav>
         </div>
+        <aside class="series-posts" aria-label="Series" data-series-limit="6" data-series-list><h2><span>Series</span><span>Calm publishing</span></h2><ol><li data-series-order="3"><a href="#">Verification notes for independent sites</a></li><li data-series-order="1"><a href="#">Building a reliable content workflow around Halo 2.x</a></li><li class="is-current" data-series-order="2"><a href="/post.html" aria-current="page">Designing a calmer technical publication</a></li></ol></aside>
         <aside class="article-license" aria-label="Author and copyright notice"><div class="article-license__lead"><strong>Designing a calmer technical publication</strong><a href="/post.html">http://127.0.0.1:4173/post.html</a></div><dl><div><dt>Author</dt><dd>Everett Labs</dd></div><div><dt>Published</dt><dd>2026-08-14</dd></div><div><dt>License</dt><dd><a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a></dd></div></dl><span class="article-license__mark" aria-hidden="true">©</span></aside>
         <nav class="post-navigation" aria-label="Adjacent posts"><a href="#"><span>Previous</span><strong>Building a reliable content workflow</strong></a><a class="post-navigation__next" href="#"><span>Next</span><strong>Verification notes for independent sites</strong></a></nav>
       </footer>
@@ -298,6 +299,17 @@ const archives = `
   <div class="timeline">${archiveMarkup}</div>
   <nav class="pagination" aria-label="Archive pagination"><span class="pagination__status">1 / 3</span><a class="pagination__link" href="#" rel="next"><span>Next</span><i data-lucide="arrow-right"></i></a></nav>`;
 
+// 分类精选卡片与文章系列列表曾因 th:if 先于 th:with 执行而从未渲染，夹具覆盖这两处以核对样式。
+const category = `
+  <header class="archive-heading">
+    <nav class="breadcrumbs archive-breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="#">Categories</a><span aria-hidden="true">/</span><span aria-current="page">Infrastructure</span></nav>
+    <h1>Infrastructure</h1>
+    <p>Hosting, networking, and operations notes for small independent sites.</p>
+  </header>
+  <aside class="featured-entry"><small>Featured</small><a href="/post.html">${posts[0].title}</a></aside>
+  <ul class="post-list">${postMarkup}</ul>
+  <nav class="pagination" aria-label="Pagination"><span class="pagination__status">1 / 2</span><a class="pagination__link" href="#" rel="next"><span>Next</span><i data-lucide="arrow-right"></i></a></nav>`;
+
 const links = `
   <header class="page-heading">
     <p class="eyebrow">Connections</p>
@@ -349,6 +361,7 @@ await writeFile(
   page("About wide logo - Rackora", about("wide"), "", "wide"),
 );
 await writeFile(path.join(output, "archives.html"), page("Archives - Rackora", archives));
+await writeFile(path.join(output, "category.html"), page("Infrastructure - Rackora", category));
 await writeFile(path.join(output, "links.html"), page("Links - Rackora", links));
 await writeFile(
   path.join(output, "error.html"),

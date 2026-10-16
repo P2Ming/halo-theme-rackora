@@ -19,8 +19,9 @@ work to local changes or skip publishing; otherwise follow the complete release 
    than bypassing hooks or checks.
 7. Visually verify frontend changes in the browser at representative desktop and mobile sizes.
    Check light and dark color schemes when colors, borders, or contrast change.
-8. Update `package.json`, `theme.yaml`, `README.md`, and `CHANGELOG.md` to the same release version.
-   Release notes must describe the actual user-visible changes.
+8. Update `package.json`, `theme.yaml`, `README.md`, `README.en.md`, and `CHANGELOG.md` to the same
+   release version, including the `vX.Y.Z` tag in README image URLs. Release notes must describe the
+   actual user-visible changes.
 9. Run `pnpm build` to create `dist/theme-rackora-X.Y.Z.zip`. Inspect the ZIP for the expected
    version, configuration, generated templates, and changed behavior; record its size and SHA-256.
 10. Review `git diff --check`, the complete diff, and `git status`. Commit only the intended files.

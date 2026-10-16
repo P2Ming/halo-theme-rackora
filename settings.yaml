@@ -522,7 +522,7 @@ spec:
           name: enabled
           id: analytics_enabled
           label: 启用第三方访问分析
-          help: 默认关闭；启用后仅加载已填写且格式有效的分析服务。
+          help: 默认关闭。开启后只加载已填写且格式有效的服务，访客浏览器会直接向服务方发送访问数据；数据类别、保存与删除方式见主题 README「隐私、统计与外部服务」。
           value: false
         - $formkit: text
           name: ga4_id

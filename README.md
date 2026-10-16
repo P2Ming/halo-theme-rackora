@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/public/assets/images/rackora-mark.svg" alt="Rackora" width="96" height="96" />
+<img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/v0.9.8/public/assets/images/rackora-mark.svg" alt="Rackora" width="96" height="96" />
 
 # Rackora
 
@@ -10,43 +10,43 @@
 
 Rackora 是一个面向 Halo 2.x 的内容优先主题，适合独立博客、知识库、技术文档和其他长期维护的内容站点。它采用安静、低图片的出版式布局，提供响应式阅读、明暗模式、文章目录、代码高亮和完整的页面 SEO 输出。
 
-当前版本：`v0.9.7`  
-Current release: `v0.9.7`
+当前版本：`v0.9.8`  
+Current release: `v0.9.8`
 
 - 许可证：[GPL-3.0](LICENSE)（免费主题，无应用市场内购）
 - 兼容 Halo：`>= 2.20.0`
 - 问题反馈：[GitHub Issues](https://github.com/everett7623/halo-theme-rackora/issues)
 - 源码仓库：[halo-theme-rackora](https://github.com/everett7623/halo-theme-rackora)
 
-![Rackora 应用市场封面](docs/marketplace-cover.png)
+![Rackora 应用市场封面](https://raw.githubusercontent.com/everett7623/halo-theme-rackora/v0.9.8/docs/marketplace-cover.png)
 
 ## 界面预览
 
 ### 前台页面
 
-|                                                                          首页（浅色）                                                                          |                                                                   首页（深色）                                                                    |
-| :------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------: |
-|       <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/home-light.png" alt="首页浅色模式" width="600" />       | <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/home-dark.png" alt="首页深色模式" width="600" /> |
-|                                                                           **文章页**                                                                           |                                                                    **手机端**                                                                     |
-| <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/post.png" alt="文章页：目录、分享栏与版权声明" width="600" /> | <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/home-mobile.png" alt="手机端首页" width="240" /> |
-|                                                                           **归档页**                                                                           |                                                                    **关于页**                                                                     |
-|           <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/archives.png" alt="归档页" width="600" />           |      <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/about.png" alt="关于页" width="600" />      |
-|                                                                           **分类页**                                                                           |                                                                   **标签列表**                                                                    |
-|           <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/category.png" alt="分类页" width="600" />           |     <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/tags.png" alt="标签列表" width="600" />      |
+|                                                                           首页（浅色）                                                                           |                                                                    首页（深色）                                                                     |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------: |
+|       <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/v0.9.8/docs/screenshots/home-light.png" alt="首页浅色模式" width="600" />       | <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/v0.9.8/docs/screenshots/home-dark.png" alt="首页深色模式" width="600" /> |
+|                                                                            **文章页**                                                                            |                                                                     **手机端**                                                                      |
+| <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/v0.9.8/docs/screenshots/post.png" alt="文章页：目录、分享栏与版权声明" width="600" /> | <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/v0.9.8/docs/screenshots/home-mobile.png" alt="手机端首页" width="240" /> |
+|                                                                            **归档页**                                                                            |                                                                     **关于页**                                                                      |
+|           <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/v0.9.8/docs/screenshots/archives.png" alt="归档页" width="600" />           |      <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/v0.9.8/docs/screenshots/about.png" alt="关于页" width="600" />      |
+|                                                                            **分类页**                                                                            |                                                                    **标签列表**                                                                     |
+|           <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/v0.9.8/docs/screenshots/category.png" alt="分类页" width="600" />           |     <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/v0.9.8/docs/screenshots/tags.png" alt="标签列表" width="600" />      |
 
 ### 后台设置
 
-|                                                                               主题详情                                                                               |                                                                          基础                                                                          |
-| :------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------: |
-| <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/console-theme-detail.png" alt="Console 中的主题详情" width="600" /> |   <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-basic.png" alt="基础设置" width="600" />   |
-|                                                                               **外观**                                                                               |                                                                       **侧边栏**                                                                       |
-|       <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-appearance.png" alt="外观设置" width="600" />        | <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-sidebar.png" alt="侧边栏设置" width="600" /> |
-|                                                                               **文章**                                                                               |                                                                        **插件**                                                                        |
-|          <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-post.png" alt="文章设置" width="600" />           |  <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-plugins.png" alt="插件设置" width="600" />  |
-|                                                                               **SEO**                                                                                |                                                                        **分析**                                                                        |
-|           <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-seo.png" alt="SEO 设置" width="600" />           | <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-analytics.png" alt="分析设置" width="600" /> |
-|                                                                               **广告**                                                                               |                                                                        **备案**                                                                        |
-|           <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-ads.png" alt="广告设置" width="600" />           |  <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/main/docs/screenshots/settings-filing.png" alt="备案设置" width="600" />   |
+|                                                                                主题详情                                                                                |                                                                           基础                                                                           |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/v0.9.8/docs/screenshots/console-theme-detail.png" alt="Console 中的主题详情" width="600" /> |   <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/v0.9.8/docs/screenshots/settings-basic.png" alt="基础设置" width="600" />   |
+|                                                                                **外观**                                                                                |                                                                        **侧边栏**                                                                        |
+|       <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/v0.9.8/docs/screenshots/settings-appearance.png" alt="外观设置" width="600" />        | <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/v0.9.8/docs/screenshots/settings-sidebar.png" alt="侧边栏设置" width="600" /> |
+|                                                                                **文章**                                                                                |                                                                         **插件**                                                                         |
+|          <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/v0.9.8/docs/screenshots/settings-post.png" alt="文章设置" width="600" />           |  <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/v0.9.8/docs/screenshots/settings-plugins.png" alt="插件设置" width="600" />  |
+|                                                                                **SEO**                                                                                 |                                                                         **分析**                                                                         |
+|           <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/v0.9.8/docs/screenshots/settings-seo.png" alt="SEO 设置" width="600" />           | <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/v0.9.8/docs/screenshots/settings-analytics.png" alt="分析设置" width="600" /> |
+|                                                                                **广告**                                                                                |                                                                         **备案**                                                                         |
+|           <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/v0.9.8/docs/screenshots/settings-ads.png" alt="广告设置" width="600" />           |  <img src="https://raw.githubusercontent.com/everett7623/halo-theme-rackora/v0.9.8/docs/screenshots/settings-filing.png" alt="备案设置" width="600" />   |
 
 分析与广告分组默认关闭，截图为开启后显示的完整选项。
 
@@ -64,7 +64,7 @@ Rackora 的信息层级受到 [Fuwari](https://github.com/saicaca/fuwari)（Astr
 - 文章、独立页、归档、标签、分类、作者、友情链接和 404 页面，共 11 个标准 Halo 路由模板；另含关于页（About）和文档（Documentation）自定义模板。
 - 响应式导航、二级菜单、返回顶部、减少动态效果，以及浅色、深色和打印样式。
 - 文章作者信息、阅读进度、预计阅读时间、目录、标题锚点、复制链接、相关文章、系列和相邻文章导航。
-- Highlight.js 代码高亮、按需语言包、代码复制、响应式表格、正文图片灯箱。
+- Highlight.js 代码高亮（内置 Bash、CSS、Dockerfile、Go、INI、Java、JavaScript、JSON、Nginx、Python、Rust、SCSS、SQL、TypeScript、HTML/XML、YAML 共 16 种语言，其他语言保持纯文本显示）、代码复制、响应式表格、正文图片灯箱。
 - X、Facebook、LinkedIn、Reddit、Telegram、WhatsApp、微博、邮件和复制链接分享，可在后台逐项关闭。
 - Halo 评论、搜索、页脚扩展点，以及官方 RSS 和友情链接插件适配。
 - 页面级唯一 H1、自指 canonical、Open Graph、Twitter Card、面包屑和 WebSite / Organization / BlogPosting / TechArticle JSON-LD。
@@ -177,9 +177,16 @@ Rackora 负责前端布局、代码高亮、目录、标签展示、返回顶部
 
 ## 隐私、统计与外部服务
 
-默认安装下，主题**不会**加载第三方统计、广告或远程字体。正文阅读所需的字体、图标和代码高亮都打包在主题内。
+### 主题自身的行为
 
-仅在站点管理员主动开启后，才会请求外部服务：
+- 主题不设置 Cookie，不收集、上传或出售访客信息、站点内容、评论或访问日志，也没有自建统计接口。
+- 字体、图标和代码高亮随主题打包，从站点自身域名加载；默认安装不请求任何第三方域名。
+- 访客手动切换明暗模式时，选择以 `rackora-color-scheme`（值为 `light` 或 `dark`）保存在浏览器 `localStorage` 中，只在本机生效，不会发送到服务器；清除该站点的浏览器数据即可删除。
+- 「复制链接」和「复制代码」只在访客点击时写入本机剪贴板。
+- 分享按钮是普通链接，页面加载时不请求社交平台，访客点击后才跳转到所选平台。
+- 文章阅读量和首页站点统计由 Halo 自身记录，评论、搜索、RSS 由 Halo 或对应插件处理，主题只读取并展示。
+
+### 需要管理员开启的外部服务
 
 | 能力              | 设置位置 | 外部地址                       | 默认 |
 | ----------------- | -------- | ------------------------------ | ---- |
@@ -190,7 +197,36 @@ Rackora 负责前端布局、代码高亮、目录、标签展示、返回顶部
 | 主题广告位        | 广告     | 仅在填写了跳转地址时链到该地址 | 关闭 |
 | 社交分享按钮      | 文章     | 点击后跳转到对应用户选择的平台 | 开启 |
 
-主题不收集、上传或出售站点内容、用户账号、评论或访问日志。统计与广告由站点所有者自行配置，并应对其隐私政策负责。关闭「启用第三方访问分析」或「启用主题广告位」后，对应脚本和广告位立即停止输出。
+### 第三方统计的数据处理
+
+开启「启用第三方访问分析」并填写服务 ID 后，访客浏览器会直接从服务方加载脚本，并把访问数据发送给服务方。这些数据不经过主题，也不保存在 Halo 中，主题无法查看或删除。数据类别、保存期限和删除方式由各服务方决定；以下内容依据服务方公开文档整理，请以其最新说明为准。
+
+**Google Analytics 4**（脚本：`www.googletagmanager.com/gtag/js`）
+
+- 数据类别：页面地址与标题、来源页、设备、浏览器、操作系统、屏幕与语言、根据 IP 推断的大致位置，以及页面浏览、滚动、外链点击等事件（取决于 GA 后台的增强型衡量设置）。Google 说明 Google Analytics 不记录或存储 IP 地址。
+- 浏览器存储：`_ga`、`_ga_<ID>` 等第一方 Cookie，用于区分访客与会话。
+- 保存与删除：数据保存在 Google 服务器。用户级和事件级数据的保留期在 GA 后台「数据保留」中设置（标准媒体资源为 2 或 14 个月），到期自动删除，标准汇总报告不受此设置影响；单个访客的数据可通过「用户探索」或 User Deletion API 删除，也可以删除整个媒体资源。
+- 政策与说明：[Google 隐私权政策](https://policies.google.com/privacy) · [Google Analytics 数据保护](https://support.google.com/analytics/answer/6004245) · [数据保留](https://support.google.com/analytics/answer/7667196)
+
+**Microsoft Clarity**（脚本：`www.clarity.ms/tag/<项目 ID>`）
+
+- 数据类别：点击、滚动、鼠标移动、窗口尺寸变化等交互事件，用于会话回放和热图的页面结构与内容（输入框内容始终遮盖），页面性能与错误信息，设备与浏览器信息，以及根据 IP 推断的地理位置。
+- 浏览器存储：`_clck`、`_clsk` 等 Cookie，完整列表见 Clarity Cookie 说明。
+- 保存与删除：数据存储在 Microsoft Azure。站点所有者可在录制后 30 天内查看数据，收藏和随机抽样的录制最长保留 9 个月。Clarity 不支持删除单个访客或单条录制，只能删除整个项目，删除后无法恢复。
+- 政策与说明：[Microsoft 隐私声明](https://privacy.microsoft.com/privacystatement) · [Clarity 常见问题](https://learn.microsoft.com/clarity/faq) · [数据收集说明](https://learn.microsoft.com/clarity/setup-and-installation/clarity-data) · [Cookie 说明](https://learn.microsoft.com/clarity/setup-and-installation/clarity-cookies)
+
+**百度统计**（脚本：`hm.baidu.com/hm.js?<站点 ID>`）
+
+- 数据类别：访问的页面与来源、访问时间，以及 IP 地址、浏览器类型与语言、操作系统、设备信息等日志信息。
+- 浏览器存储：`HMACCOUNT`（访客 ID）、`Hm_lvt_<站点 ID>`（历史访问时间，1 年）、`Hm_lpvt_<站点 ID>`（本次访问时间，会话结束失效）等 Cookie。
+- 保存与删除：百度统计隐私政策说明，个人信息存储在中华人民共和国境内，并在使用服务期间持续保存；其服务条款约定，站点所有者不得要求百度统计删除已收集的数据。访客可以删除浏览器 Cookie，或按隐私政策中的联系方式提出请求。
+- 政策与说明：[百度统计隐私政策](https://tongji.baidu.com/web/help/article?id=330&type=0) · [服务条款](https://tongji.baidu.com/holmes/Analytics/%E9%9A%90%E7%A7%81%E5%90%88%E8%A7%84%E6%8C%87%E5%8D%97/%E7%99%BE%E5%BA%A6%E7%BB%9F%E8%AE%A1%E6%9C%8D%E5%8A%A1%E6%9D%A1%E6%AC%BE) · [Cookie 列表](https://tongji.baidu.com/holmes/Analytics/%E9%9A%90%E7%A7%81%E5%90%88%E8%A7%84%E6%8C%87%E5%8D%97/%E7%99%BE%E5%BA%A6%E7%BB%9F%E8%AE%A1%E7%9B%B8%E5%85%B3Cookie%E5%88%97%E8%A1%A8)
+
+### 关闭与告知
+
+- 关闭「启用第三方访问分析」或清空服务 ID 后，前台立即停止输出对应脚本（启用了页面静态缓存时需先清理缓存），不再产生新数据；已发送给服务方的数据不会因此删除，需要按上述方式在服务方处理。
+- 主题不提供 Cookie 同意横幅。启用统计前，请在站点隐私政策中列出所用服务及其数据处理方式；面向欧盟、英国等要求事先同意的地区时，还需自行接入同意管理方案。
+- 主题广告位只显示管理员填写的文字、图片和链接，不加载第三方广告脚本。
 
 ## 第三方资源与许可证
 

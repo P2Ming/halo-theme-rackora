@@ -64,6 +64,11 @@ const wideLogoSetting = appearanceForm?.formSchema?.find((field) => field.name =
 
 assert.equal(theme?.metadata?.name, "theme-rackora", "theme ID must match the folder name");
 assert.equal(
+  theme?.metadata?.annotations?.["store.halo.run/app-id"],
+  "app-bflwdcgw",
+  "theme.yaml must keep the Halo App Store app ID so installed copies receive store updates",
+);
+assert.equal(
   theme?.spec?.settingName,
   settings?.metadata?.name,
   "theme settingName must match settings metadata.name",
@@ -188,12 +193,36 @@ const screenshotFiles = (await readdir(path.join(root, "docs", "screenshots"))).
   name.endsWith(".png"),
 );
 assert.ok(screenshotFiles.length >= 4, "docs/screenshots must keep the README preview images");
+// 安装包里的 README 会长期留存：图片必须是绝对地址并固定到当前发布标签，main 上改名或删除截图不会让旧安装包失效。
+const readmeAssetPrefix = `https://raw.githubusercontent.com/everett7623/halo-theme-rackora/v${packageManifest.version}/`;
 for (const readmeName of ["README.md", "README.en.md"]) {
-  const assets = [
-    ...(await read(readmeName)).matchAll(
-      /raw\.githubusercontent\.com\/everett7623\/halo-theme-rackora\/main\/([\w./-]+\.(?:png|svg))/g,
-    ),
+  const readmeSource = await read(readmeName);
+  const imageSources = [
+    ...readmeSource.matchAll(/<img\b[^>]*\bsrc="([^"]+)"/g),
+    ...readmeSource.matchAll(/!\[[^\]]*\]\(([^)\s]+)/g),
   ].map((match) => match[1]);
+  const assets = imageSources.map((source) => {
+    assert.ok(
+      source.startsWith(readmeAssetPrefix),
+      `${readmeName} images must use ${readmeAssetPrefix}; relative or main-branch links break in older install packages: ${source}`,
+    );
+    return source.slice(readmeAssetPrefix.length);
+  });
+  assert.doesNotMatch(
+    readmeSource,
+    /按需语言包|on-demand language/i,
+    `${readmeName} must describe the Highlight.js languages bundled in src/js/post.ts`,
+  );
+  for (const policy of [
+    "https://policies.google.com/privacy",
+    "https://privacy.microsoft.com/privacystatement",
+    "https://tongji.baidu.com/web/help/article?id=330&type=0",
+  ]) {
+    assert.ok(
+      readmeSource.includes(policy),
+      `${readmeName} must link the privacy policy of every optional analytics service: ${policy}`,
+    );
+  }
   assert.ok(
     assets.includes("public/assets/images/rackora-mark.svg"),
     `${readmeName} must open with the theme logo`,
@@ -223,6 +252,17 @@ assert.deepEqual(
   "public/ is copied into every install package; keep screenshots and store assets in docs/ or dist/",
 );
 assert.match(layout, /<html\b[^>]*xmlns:th=/, "layout must declare the Thymeleaf namespace");
+// :root 用 --rack-accent-user 派生强调色；变量写在 <body> 上不会回流到 :root，后台强调色设置会失效。
+assert.match(
+  layout,
+  /<html\b[^>]*th:style="\|--rack-accent-user: \$\{theme\.config\.appearance\.accent_color/,
+  "the accent color setting must be applied on <html> so :root derives --rack-accent from it",
+);
+assert.doesNotMatch(
+  layout,
+  /<body\b[^>]*--rack-accent-user/,
+  "do not set --rack-accent-user on <body>; :root-derived accent tokens ignore it",
+);
 assert.match(layout, /menuFinder\.getPrimary\(\)/, "layout must render the primary Halo menu");
 assert.match(
   layout,
@@ -763,6 +803,31 @@ for (const template of [
     /[一-鿿]/,
     `custom template ${template.file} must use Chinese labels in the Console`,
   );
+}
+// Thymeleaf 先执行 th:if / th:unless，再执行 th:with；同一元素上的判断不能引用本元素定义的变量。
+for (const entry of sourceFiles) {
+  if (!entry.isFile() || !entry.name.endsWith(".html")) continue;
+  const relativePath = path
+    .relative(root, path.join(entry.parentPath, entry.name))
+    .replaceAll("\\", "/");
+  const source = await read(relativePath);
+  for (const tag of source.matchAll(
+    /<[a-zA-Z][\w:-]*(?:\s+[^\s=>"']+(?:\s*=\s*(?:"[^"]*"|'[^']*'))?)*\s*\/?>/g,
+  )) {
+    const declared = [
+      ...(tag[0].match(/th:with="([^"]*)"/)?.[1] ?? "").matchAll(/(?:^|,)\s*([A-Za-z_]\w*)\s*=/g),
+    ].map((match) => match[1]);
+    for (const [, condition] of tag[0].matchAll(/th:(?:if|unless)="([^"]*)"/g)) {
+      const early = declared.filter((name) =>
+        new RegExp(`(?<![\\w.])${name}(?!\\w)`).test(condition),
+      );
+      assert.deepEqual(
+        early,
+        [],
+        `${relativePath}:${source.slice(0, tag.index).split("\n").length} th:if runs before th:with on the same element`,
+      );
+    }
+  }
 }
 assert.doesNotMatch(
   sourceMarkup.join("\n"),

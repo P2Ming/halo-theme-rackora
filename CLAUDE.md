@@ -138,10 +138,11 @@ annotation-setting.yaml     # 内容编辑字段（文章/标签/栏目）
 
 ### 版本同步
 
-版本号必须在以下三处保持一致：
+版本号必须在以下几处保持一致：
 
 - `package.json` `version`
 - `theme.yaml` `spec.version`
+- `README.md` / `README.en.md` 的当前版本行，以及 README 图片地址中的 `vX.Y.Z` 标签（安装包内的 README 长期留存，图片不能指向 `main`）
 - `CHANGELOG.md` 对应章节
 
 `pnpm test` 会验证此约束。
