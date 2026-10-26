@@ -139,16 +139,14 @@ function page(title, body, scripts = "", logoMode = "square") {
 
 function home(logoMode = "square", eyebrow = "", tagline = "") {
   const isWide = logoMode === "wide";
-  const hasHeading = Boolean(eyebrow || tagline);
   const profileBrandMarkup = isWide
     ? `<img class="profile-panel__mark" width="192" height="64" src="${wideLogoSource}" alt="Rackora" />`
     : `<img class="profile-panel__mark" width="64" height="64" src="/assets/images/rackora-mark.svg" alt="Rackora" />
         <div class="profile-panel__copy"><h2>Rackora</h2><p>Independent publishing with clarity and care.</p></div>`;
 
   return `
-  <div class="home-grid${hasHeading ? " home-grid--with-heading" : ""}" data-footprints-src="/footprints-original.html">
-    <h1 class="home-title-visually-hidden">Rackora</h1>
-    ${hasHeading ? `<section class="home-heading" aria-label="首页介绍">${eyebrow ? `<p class="home-heading__brand">${eyebrow}</p>` : ""}${tagline ? `<p class="home-heading__tagline">${tagline}</p>` : ""}</section>` : ""}
+  <div class="home-grid home-grid--with-heading" data-footprints-src="/footprints-original.html">
+    <section class="home-heading" aria-label="首页介绍">${eyebrow ? `<p class="home-heading__brand">${eyebrow}</p>` : ""}<h1 id="home-title">Rackora</h1>${tagline ? `<p class="home-heading__tagline">${tagline}</p>` : ""}</section>
     <section class="content-section" aria-labelledby="latest-title">
       <header class="section-heading"><h2 id="latest-title">Latest posts</h2><a class="text-link" href="#">View archives</a></header>
       <ul class="post-list post-list--cards">${postMarkup}</ul>

@@ -675,11 +675,8 @@ assert.ok(appearanceForm?.formSchema?.find((field) => field.name === "home_eyebr
 assert.ok(appearanceForm?.formSchema?.find((field) => field.name === "home_tagline"));
 assert.match(home, /homeEyebrow = \$\{theme\.config\.appearance\?\.home_eyebrow\}/);
 assert.match(home, /homeTagline = \$\{theme\.config\.appearance\?\.home_tagline\}/);
-assert.match(
-  home,
-  /showHomeHeading = \$\{\(homeEyebrow != null and not #strings\.isEmpty\(homeEyebrow\)\) or \(homeTagline != null and not #strings\.isEmpty\(homeTagline\)\)\}/,
-);
-assert.match(home, /class="home-heading" th:if="\$\{showHomeHeading\}"/);
+assert.match(home, /class="home-grid home-grid--with-heading"/);
+assert.match(home, /class="home-heading" aria-label="首页介绍"/);
 assert.match(
   home,
   /class="home-heading__brand"\s+th:if="\$\{homeEyebrow != null and not #strings\.isEmpty\(homeEyebrow\)\}"/,
@@ -688,7 +685,7 @@ assert.match(
   home,
   /class="home-heading__tagline"\s+th:if="\$\{homeTagline != null and not #strings\.isEmpty\(homeTagline\)\}"/,
 );
-assert.doesNotMatch(home, /posts\.total.*posts|homeEyebrowText|homeTaglineText/);
+assert.doesNotMatch(home, /posts\.total.*posts|homeEyebrowText|homeTaglineText|showHomeHeading/);
 assert.match(mainStyles, /\.home-grid\s*\{[^}]*grid-template-areas:\s*"content sidebar"/);
 assert.match(mainStyles, /\.home-grid--with-heading\s*\{[^}]*"heading sidebar"/);
 assert.match(
@@ -966,16 +963,13 @@ assert.match(
   /isZhCNSidebar \? '分类' : 'Categories'/,
   "home category panel must use the concise Chinese label",
 );
-assert.doesNotMatch(
-  home,
-  /id=["']home-title["']/,
-  "home must not restore the old brand hero title",
-);
 assert.match(
   home,
-  /class=["']home-title-visually-hidden["']/,
-  "home must retain an accessible hidden H1",
+  /<h1 id="home-title" th:text="\$\{site\.title\}">/,
+  "home must show the site title between the optional eyebrow and tagline",
 );
+assert.equal((home.match(/<h1\b/g) || []).length, 1, "home must have exactly one H1");
+assert.doesNotMatch(home, /home-title-visually-hidden/);
 assert.match(home, /profile-panel__mark/, "home sidebar must keep the site logo");
 assert.match(home, /profile-panel__copy/, "home sidebar must keep the site title and subtitle");
 assert.match(
