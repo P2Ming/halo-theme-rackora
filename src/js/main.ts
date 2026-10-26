@@ -152,8 +152,41 @@ function normalizePath(pathname: string): string {
   return trimmed || "/";
 }
 
+function initFootprintsView(): void {
+  const footprintView = new URLSearchParams(window.location.search).has("footprints");
+  for (const link of document.querySelectorAll<HTMLAnchorElement>(
+    "[data-site-nav] a[href], .site-footer a[href]",
+  )) {
+    const rawHref = link.getAttribute("href") || "";
+    if (!rawHref || rawHref.startsWith("#")) continue;
+    const url = new URL(link.href, window.location.origin);
+    if (url.origin !== window.location.origin || normalizePath(url.pathname) !== "/footprints")
+      continue;
+    link.href = "/?footprints";
+  }
+
+  if (!footprintView) return;
+  const home = document.querySelector<HTMLElement>(".home-grid");
+  if (!home) return;
+  const source = home.dataset.footprintsSrc || "/footprints";
+  const section = document.createElement("section");
+  section.className = "footprints-page";
+  section.dataset.footprintsPage = "";
+  const frame = document.createElement("iframe");
+  frame.className = "footprints-embed";
+  frame.src = source;
+  frame.title = "足迹";
+  frame.loading = "eager";
+  frame.allowFullscreen = true;
+  section.append(frame);
+  home.replaceWith(section);
+  document.querySelector(".home-banner")?.remove();
+  document.title = `${uiText("Footprints", "足迹")} - ${document.title}`;
+}
+
 function initActiveNavigation(): void {
   const current = normalizePath(window.location.pathname);
+  const footprintView = new URLSearchParams(window.location.search).has("footprints");
   for (const link of document.querySelectorAll<HTMLAnchorElement>("[data-site-nav] a[href]")) {
     const rawHref = link.getAttribute("href") || "";
     let url: URL;
@@ -167,7 +200,11 @@ function initActiveNavigation(): void {
       rawHref !== "" && !rawHref.startsWith("#") && url.origin === window.location.origin;
     const path = normalizePath(url.pathname);
     const active =
-      comparable && (path === current || (path !== "/" && current.startsWith(`${path}/`)));
+      comparable &&
+      (footprintView
+        ? path === "/" && url.searchParams.has("footprints")
+        : !url.searchParams.has("footprints") &&
+          (path === current || (path !== "/" && current.startsWith(`${path}/`))));
     link.classList.toggle("is-active", active);
     if (active) link.setAttribute("aria-current", "page");
     else link.removeAttribute("aria-current");
@@ -272,6 +309,7 @@ function initPopularTags(): void {
 
 document.addEventListener("DOMContentLoaded", () => {
   renderIcons();
+  initFootprintsView();
   initNavigation();
   initActiveNavigation();
   initThemeToggle();

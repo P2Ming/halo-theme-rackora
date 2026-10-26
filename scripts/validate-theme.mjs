@@ -339,6 +339,11 @@ const postScript = await read("src/js/post.ts");
 const previewScript = await read("scripts/create-preview.mjs");
 const agentInstructions = await read("AGENTS.md");
 const contributing = await read("CONTRIBUTING.md");
+assert.match(
+  home,
+  /data-footprints-src="\/footprints"/,
+  "home must provide the original footprint route for the embedded view",
+);
 assert.match(post, /kind=["']Post["']/, "post comments must target Post");
 assert.match(singlePage, /kind=["']SinglePage["']/, "page comments must target SinglePage");
 assert.match(post, /post\.owner\.permalink/, "posts must link to their Halo author page");

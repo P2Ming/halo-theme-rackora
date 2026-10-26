@@ -145,7 +145,7 @@ function home(logoMode = "square") {
         <div class="profile-panel__copy"><h2>Rackora</h2><p>Independent publishing with clarity and care.</p></div>`;
 
   return `
-  <div class="home-grid">
+  <div class="home-grid" data-footprints-src="/footprints-original.html">
     <h1 class="home-title-visually-hidden">Rackora</h1>
     <section class="content-section" aria-labelledby="latest-title">
       <header class="section-heading"><h2 id="latest-title">Latest posts</h2><a class="text-link" href="#">View archives</a></header>

@@ -61,6 +61,7 @@
 
   <div
     class="home-grid"
+    data-footprints-src="/footprints"
     th:with="showHomeSidebar = ${theme.config.home?.show_home_sidebar != null ? theme.config.home.show_home_sidebar : (theme.config.content?.show_home_sidebar == null or theme.config.content.show_home_sidebar)},
       isZhCN = ${theme.config.basic?.ui_language == 'zh-CN'}"
     th:classappend="${showHomeSidebar} ? '' : ' home-grid--single'"
