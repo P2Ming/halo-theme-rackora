@@ -63,10 +63,29 @@
     class="home-grid"
     data-footprints-src="/footprints"
     th:with="showHomeSidebar = ${theme.config.home?.show_home_sidebar != null ? theme.config.home.show_home_sidebar : (theme.config.content?.show_home_sidebar == null or theme.config.content.show_home_sidebar)},
-      isZhCN = ${theme.config.basic?.ui_language == 'zh-CN'}"
-    th:classappend="${showHomeSidebar} ? '' : ' home-grid--single'"
+      isZhCN = ${theme.config.basic?.ui_language == 'zh-CN'},
+      homeEyebrow = ${theme.config.appearance?.home_eyebrow},
+      homeTagline = ${theme.config.appearance?.home_tagline},
+      showHomeHeading = ${(homeEyebrow != null and not #strings.isEmpty(homeEyebrow)) or (homeTagline != null and not #strings.isEmpty(homeTagline))}"
+    th:classappend="|${showHomeHeading ? ' home-grid--with-heading' : ''}${showHomeSidebar ? '' : ' home-grid--single'}|"
   >
     <h1 class="home-title-visually-hidden" th:text="${site.title}">站点标题</h1>
+    <section class="home-heading" th:if="${showHomeHeading}" aria-label="首页介绍">
+      <p
+        class="home-heading__brand"
+        th:if="${homeEyebrow != null and not #strings.isEmpty(homeEyebrow)}"
+        th:text="${homeEyebrow}"
+      >
+        Independent publishing
+      </p>
+      <p
+        class="home-heading__tagline"
+        th:if="${homeTagline != null and not #strings.isEmpty(homeTagline)}"
+        th:text="${homeTagline}"
+      >
+        Written for clarity and longevity
+      </p>
+    </section>
     <section class="content-section" aria-labelledby="latest-title">
       <include src="ad-slot.html" position="home_top"></include>
 

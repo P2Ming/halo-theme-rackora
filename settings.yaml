@@ -213,13 +213,13 @@ spec:
           name: home_eyebrow
           id: home_eyebrow
           label: 首页眉题
-          help: 标题上方的小字；留空则按界面语言显示「独立出版」或 Independent publishing。
+          help: 标题上方的小字；留空则不显示。
           value: ""
         - $formkit: text
           name: home_tagline
           id: home_tagline
           label: 首页短句
-          help: 标题区底部短句（与篇数并列）；留空则用主题默认文案。站点标题和副标题仍在 Halo 系统设置里改。
+          help: 标题区底部短句；留空则不显示。站点标题和副标题仍在 Halo 系统设置里改。
           value: ""
         - $formkit: select
           name: content_width

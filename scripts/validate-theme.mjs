@@ -673,11 +673,24 @@ assert.deepEqual(
 assert.ok(appearanceForm?.formSchema?.find((field) => field.name === "banner_image"));
 assert.ok(appearanceForm?.formSchema?.find((field) => field.name === "home_eyebrow"));
 assert.ok(appearanceForm?.formSchema?.find((field) => field.name === "home_tagline"));
-assert.doesNotMatch(
+assert.match(home, /homeEyebrow = \$\{theme\.config\.appearance\?\.home_eyebrow\}/);
+assert.match(home, /homeTagline = \$\{theme\.config\.appearance\?\.home_tagline\}/);
+assert.match(
   home,
-  /class="home-heading"|homeEyebrow|homeTagline|>独立出版<|>Independent publishing<|>清晰表达，长期可读<|>Written for clarity and longevity</,
-  "home must not render the removed branding and tagline block",
+  /showHomeHeading = \$\{\(homeEyebrow != null and not #strings\.isEmpty\(homeEyebrow\)\) or \(homeTagline != null and not #strings\.isEmpty\(homeTagline\)\)\}/,
 );
+assert.match(home, /class="home-heading" th:if="\$\{showHomeHeading\}"/);
+assert.match(
+  home,
+  /class="home-heading__brand"\s+th:if="\$\{homeEyebrow != null and not #strings\.isEmpty\(homeEyebrow\)\}"/,
+);
+assert.match(
+  home,
+  /class="home-heading__tagline"\s+th:if="\$\{homeTagline != null and not #strings\.isEmpty\(homeTagline\)\}"/,
+);
+assert.doesNotMatch(home, /posts\.total.*posts|homeEyebrowText|homeTaglineText/);
+assert.match(mainStyles, /\.home-grid\s*\{[^}]*grid-template-areas:\s*"content sidebar"/);
+assert.match(mainStyles, /\.home-grid--with-heading\s*\{[^}]*"heading sidebar"/);
 assert.match(
   home,
   /isZhCN = \$\{theme\.config\.basic\?\.ui_language == 'zh-CN'\}/,
@@ -955,8 +968,8 @@ assert.match(
 );
 assert.doesNotMatch(
   home,
-  /class=["']home-heading["']|id=["']home-title["']/,
-  "home must remove the brand hero section",
+  /id=["']home-title["']/,
+  "home must not restore the old brand hero title",
 );
 assert.match(
   home,
