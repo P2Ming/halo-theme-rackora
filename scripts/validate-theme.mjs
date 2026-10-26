@@ -307,6 +307,27 @@ const post = await read("src/post.html");
 const postDocs = await read("src/post_docs.html");
 const singlePage = await read("src/page.html");
 const aboutPage = await read("src/page_about.html");
+const footprintsPage = await read("src/page_footprints.html");
+assert.doesNotMatch(
+  footprintsPage,
+  /class="(?:page-heading|footprints-heading)"/,
+  "footprints must not add a second page header",
+);
+assert.match(
+  footprintsPage,
+  /class="footprints-embed"[\s\S]*?src="\/footprints"/,
+  "footprints must embed the original plugin page inside the theme",
+);
+assert.doesNotMatch(
+  footprintsPage,
+  /footprints-(?:summary|side|detail|reset)|footprint-tag-filter|Cesium\.js/,
+  "footprints must not duplicate plugin controls or replace the original page",
+);
+assert.match(
+  mainStyles,
+  /body:has\(\.footprints-page\) \.site-footer[\s\S]*?display: none/,
+  "the immersive footprint page must show only the site header above the map",
+);
 const home = await read("src/index.html");
 const archives = await read("src/archives.html");
 const tags = await read("src/tags.html");
@@ -647,27 +668,10 @@ assert.deepEqual(
 assert.ok(appearanceForm?.formSchema?.find((field) => field.name === "banner_image"));
 assert.ok(appearanceForm?.formSchema?.find((field) => field.name === "home_eyebrow"));
 assert.ok(appearanceForm?.formSchema?.find((field) => field.name === "home_tagline"));
-assert.match(home, /home_eyebrow|homeEyebrowText/, "home heading eyebrow must be configurable");
-assert.match(home, /home_tagline|homeTaglineText/, "home heading tagline must be configurable");
-assert.match(
+assert.doesNotMatch(
   home,
-  /独立出版|Independent publishing/,
-  "home must contain eyebrow fallback text for both languages",
-);
-assert.match(
-  home,
-  /清晰表达，长期可读|Written for clarity and longevity/,
-  "home must contain tagline fallback text for both languages",
-);
-assert.match(
-  home,
-  /homeEyebrow != null and not #strings\.isEmpty\(homeEyebrow\)/,
-  "home eyebrow must check null before isEmpty to avoid NullPointerException",
-);
-assert.match(
-  home,
-  /homeTagline != null and not #strings\.isEmpty\(homeTagline\)/,
-  "home tagline must check null before isEmpty to avoid NullPointerException",
+  /class="home-heading"|homeEyebrow|homeTagline|>独立出版<|>Independent publishing<|>清晰表达，长期可读<|>Written for clarity and longevity</,
+  "home must not render the removed branding and tagline block",
 );
 assert.match(
   home,
@@ -944,8 +948,16 @@ assert.match(
   /isZhCNSidebar \? '分类' : 'Categories'/,
   "home category panel must use the concise Chinese label",
 );
-assert.match(home, /class=["']home-heading["']/, "home must keep the brand hero section");
-assert.match(home, /id=["']home-title["']/, "home hero must expose the site title as H1");
+assert.doesNotMatch(
+  home,
+  /class=["']home-heading["']|id=["']home-title["']/,
+  "home must remove the brand hero section",
+);
+assert.match(
+  home,
+  /class=["']home-title-visually-hidden["']/,
+  "home must retain an accessible hidden H1",
+);
 assert.match(home, /profile-panel__mark/, "home sidebar must keep the site logo");
 assert.match(home, /profile-panel__copy/, "home sidebar must keep the site title and subtitle");
 assert.match(

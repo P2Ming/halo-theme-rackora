@@ -1,0 +1,23 @@
+<include src="layout.html">
+  <template name="head">
+    <title th:text="|${singlePage.spec.title} - ${site.title}|">足迹 - Rackora</title>
+    <include
+      src="seo-head.html"
+      path="singlePage.status.permalink"
+      title="singlePage.spec.title"
+      description="singlePage.status.excerpt"
+      image="singlePage.spec.cover ?: site.logo"
+      type="article"
+    ></include>
+  </template>
+
+  <section class="footprints-page" data-footprints-page>
+    <iframe
+      class="footprints-embed"
+      src="/footprints"
+      title="足迹"
+      loading="eager"
+      allowfullscreen
+    ></iframe>
+  </section>
+</include>

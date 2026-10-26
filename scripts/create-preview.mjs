@@ -1,4 +1,4 @@
-import { cp, mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
+import { access, cp, mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -7,6 +7,7 @@ const output = path.join(root, ".preview");
 const builtAssets = path.join(root, "templates", "assets");
 const assetNames = await readdir(builtAssets);
 const { version } = JSON.parse(await readFile(path.join(root, "package.json"), "utf8"));
+const previewStamp = Date.now();
 const cssName = "main.css";
 const mainName = "main.js";
 const postName = "post.js";
@@ -23,6 +24,21 @@ await mkdir(path.join(output, "assets"), { recursive: true });
 await cp(builtAssets, path.join(output, "assets"), { recursive: true });
 // 构建后的 CSS 按 Halo 的主题资源路径引用字体，预览里同样提供这条路径，避免字体 404 回退。
 await cp(builtAssets, path.join(output, "themes", "theme-rackora", "assets"), { recursive: true });
+
+const pluginStatic = path.resolve(
+  process.env.FOOTPRINT_PLUGIN_STATIC_DIR ??
+    path.join(root, "..", "halo-plugin-footprint", "src", "main", "resources", "static"),
+);
+try {
+  await access(path.join(pluginStatic, "cesium", "Cesium.js"));
+  await cp(
+    path.join(pluginStatic, "cesium"),
+    path.join(output, "plugins", "footprint", "assets", "static", "cesium"),
+    { recursive: true },
+  );
+} catch {
+  // The footprint preview still exercises its empty/error state without a local plugin checkout.
+}
 
 const posts = [
   {
@@ -107,8 +123,8 @@ function page(title, body, scripts = "", logoMode = "square") {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>${title}</title>
-    <link rel="stylesheet" href="/assets/${cssName}?v=${version}" />
-    <style>[data-preview-header] { position: relative; }</style>
+    <link rel="stylesheet" href="/assets/${cssName}?v=${version}-${previewStamp}" />
+    <style>[data-preview-header] { position: relative; } body:has(.footprints-page) [data-preview-header] { position: sticky; }</style>
     <script type="module" src="/assets/${mainName}?v=${version}"></script>
     ${scripts}
   </head>
@@ -130,12 +146,7 @@ function home(logoMode = "square") {
 
   return `
   <div class="home-grid">
-    <section class="home-heading" aria-labelledby="home-title">
-      <p class="home-heading__brand">Independent publishing</p>
-      <h1 id="home-title">Rackora</h1>
-      <p>A quiet, content-first theme for independent publishing.</p>
-      <div class="home-heading__meta"><span>31 posts</span><span>Written for clarity and longevity</span></div>
-    </section>
+    <h1 class="home-title-visually-hidden">Rackora</h1>
     <section class="content-section" aria-labelledby="latest-title">
       <header class="section-heading"><h2 id="latest-title">Latest posts</h2><a class="text-link" href="#">View archives</a></header>
       <ul class="post-list post-list--cards">${postMarkup}</ul>
@@ -386,6 +397,18 @@ const articlePage = page(
   `<script type="module" src="/assets/${postName}?v=${version}"></script>`,
 );
 await writeFile(path.join(output, "post.html"), articlePage);
+const footprintPreviewBody = `
+  <section class="footprints-page" data-footprints-page>
+    <iframe class="footprints-embed" src="/footprints-original.html" title="足迹原始页面"></iframe>
+  </section>`;
+await writeFile(
+  path.join(output, "footprints.html"),
+  page("足迹 - Rackora", footprintPreviewBody, ""),
+);
+await writeFile(
+  path.join(output, "footprints-original.html"),
+  `<!doctype html><html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>足迹原始页面</title><style>html,body{height:100%;margin:0;background:#101a1c;color:#f5f8f6;font:16px system-ui,sans-serif}main{height:100%;display:grid;place-items:center;text-align:center}p{opacity:.72}</style></head><body><main><p>预览环境未运行足迹插件原始页面。部署到 Halo 后，此处会加载插件的 /footprints 页面。</p></main></body></html>`,
+);
 await writeFile(
   path.join(output, "legacy-upgrade.html"),
   articlePage

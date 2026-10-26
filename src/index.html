@@ -62,26 +62,10 @@
   <div
     class="home-grid"
     th:with="showHomeSidebar = ${theme.config.home?.show_home_sidebar != null ? theme.config.home.show_home_sidebar : (theme.config.content?.show_home_sidebar == null or theme.config.content.show_home_sidebar)},
-      isZhCN = ${theme.config.basic?.ui_language == 'zh-CN'},
-      homeEyebrow = ${theme.config.appearance?.home_eyebrow},
-      homeTagline = ${theme.config.appearance?.home_tagline},
-      homeEyebrowText = ${(homeEyebrow != null and not #strings.isEmpty(homeEyebrow)) ? homeEyebrow : (isZhCN ? '独立出版' : 'Independent publishing')},
-      homeTaglineText = ${(homeTagline != null and not #strings.isEmpty(homeTagline)) ? homeTagline : (isZhCN ? '清晰表达，长期可读' : 'Written for clarity and longevity')}"
+      isZhCN = ${theme.config.basic?.ui_language == 'zh-CN'}"
     th:classappend="${showHomeSidebar} ? '' : ' home-grid--single'"
   >
-    <section class="home-heading" aria-labelledby="home-title">
-      <p class="home-heading__brand" th:text="${homeEyebrowText}">Independent publishing</p>
-      <h1 id="home-title" th:text="${site.title}">站点标题</h1>
-      <p th:if="${not #strings.isEmpty(site.subtitle)}" th:text="${site.subtitle}"></p>
-      <div class="home-heading__meta">
-        <span
-          th:text="${isZhCN ? posts.total + ' 篇内容' : posts.total + (posts.total == 1 ? ' post' : ' posts')}"
-          >0 posts</span
-        >
-        <span th:text="${homeTaglineText}">Written for clarity and longevity</span>
-      </div>
-    </section>
-
+    <h1 class="home-title-visually-hidden" th:text="${site.title}">站点标题</h1>
     <section class="content-section" aria-labelledby="latest-title">
       <include src="ad-slot.html" position="home_top"></include>
 

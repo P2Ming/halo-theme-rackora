@@ -88,6 +88,18 @@ export default defineConfig({
           output.source = html;
         }
 
+        for (const output of Object.values(bundle)) {
+          if (output.type !== "chunk" || disposableAssets.has(output.fileName)) continue;
+          for (const [previousName, canonicalName] of renamedAssets) {
+            const previousFile = previousName.slice(previousName.lastIndexOf("/") + 1);
+            const canonicalFile = canonicalName.slice(canonicalName.lastIndexOf("/") + 1);
+            output.code = output.code.replaceAll(
+              `./${previousFile}"`,
+              `./${canonicalFile}?v=${themeVersion}"`,
+            );
+          }
+        }
+
         for (const disposableName of disposableAssets) {
           delete bundle[disposableName];
         }

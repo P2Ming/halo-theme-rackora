@@ -23,11 +23,14 @@ spec:
       - name: 关于页（About）
         description: 带 Logo、站点简介与社交链接的关于页
         file: page_about.html
+      - name: 足迹页（Footprints）
+        description: 在主题页面内展示三维足迹地球
+        file: page_footprints.html
     post:
       - name: 文档（Documentation）
         description: 目录常驻侧栏的文档式长文布局
         file: post_docs.html
-  version: 0.9.8
+  version: 0.10.0
   requires: ">=2.20.0"
   license:
     - name: "GPL-3.0"
